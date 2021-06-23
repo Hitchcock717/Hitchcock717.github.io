@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python3 on Darth Vader</title>
+    <link>https://hitchcock717.github.io/tags/python3/</link>
+    <description>Recent content in Python3 on Darth Vader</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 25 Nov 2019 18:37:56 +0000</lastBuildDate><atom:link href="https://hitchcock717.github.io/tags/python3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python之数据类型转换</title>
+      <link>https://hitchcock717.github.io/posts/data-type-conversion/</link>
+      <pubDate>Mon, 25 Nov 2019 18:37:56 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/data-type-conversion/</guid>
+      <description>参考自格物blog INT() Three types are allowed to convert to int float: int(-14.2) = -14 str: int(&amp;lsquo;1209&amp;rsquo;) = 1209; int(&#39;-15&#39;) = -15 bytes: int(b&#39;1232&#39;) = 1232 FLOAT() Three types are allowed to convert to float int: float(-1324) = -1324.0 str: conversion is not allowed if &amp;lsquo;+&amp;rsquo;, &amp;lsquo;-&amp;rsquo;, [0-9], &amp;lsquo;.&amp;rsquo; are not included float(&#39;-1209&#39;) = -1209.0; float(&#39;-0120.324&#39;) = -120.324 bytes: conversion is not allowed</description>
+    </item>
+    
+  </channel>
+</rss>

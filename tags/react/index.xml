@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>React on Darth Vader</title>
+    <link>https://hitchcock717.github.io/tags/react/</link>
+    <description>Recent content in React on Darth Vader</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Wed, 22 May 2019 23:05:27 +0000</lastBuildDate><atom:link href="https://hitchcock717.github.io/tags/react/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>前端之React语法</title>
+      <link>https://hitchcock717.github.io/posts/react-review/</link>
+      <pubDate>Wed, 22 May 2019 23:05:27 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/react-review/</guid>
+      <description>具体参见菜鸟教程 腾讯云开发者平台+node.js环境+create-react-app脚手架 安装脚手架指令：sudo yarn global add create-react-app 关于yarn package dependence</description>
+    </item>
+    
+  </channel>
+</rss>

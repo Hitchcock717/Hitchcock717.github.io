@@ -1,0 +1,1753 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Posts on Darth Vader</title>
+		<link>https://hitchcock717.github.io/posts/</link>
+		<description>Recent content in Posts on Darth Vader</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+		<lastBuildDate>Sat, 11 Apr 2020 00:00:00 +0000</lastBuildDate>
+		<atom:link href="https://hitchcock717.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>PaperWeekly-2: nlp中的基础知识点整理(partI)</title>
+			<link>https://hitchcock717.github.io/posts/paperweekly-2/paperweekly-2/</link>
+			<pubDate>Sat, 11 Apr 2020 00:00:00 +0000</pubDate>
+			
+			<guid>https://hitchcock717.github.io/posts/paperweekly-2/paperweekly-2/</guid>
+			<description>写在开头：9号突然接到阿里某部门的面试，未经准备，吃了大亏。现总结面试考的几个点如下： 协同过滤算法 基本的分词算法 扯到云计算，谈谈认识 云服务器</description>
+			<content type="html"><![CDATA[<blockquote>
+<p>写在开头：9号突然接到阿里某部门的面试，未经准备，吃了大亏。现总结面试考的几个点如下：</p>
+</blockquote>
+<ol>
+<li>协同过滤算法</li>
+<li>基本的分词算法</li>
+<li>扯到云计算，谈谈认识</li>
+<li>云服务器的权限策略</li>
+<li>谈谈MapReduce</li>
+<li>&hellip;
+之后的准备之路大概是：搞懂NLP最基础的模型与算法 &mdash;&gt; 复习机器学习 &mdash;&gt; 了解CV &mdash;&gt; 了解云计算 &mdash;&gt; 开始深度学习
+产品方面： 看入门的理论书，培养感觉 &mdash;&gt; 多思考🤔</li>
+</ol>
+<h1 id="catagory-----常宝宝的计算语言学课程资料复习">Catagory &mdash; 常宝宝的计算语言学课程资料复习</h1>
+<ul>
+<li>绪论</li>
+<li>机器学习与nlp[这部分吴恩达课程内容已涵盖]</li>
+<li>n元模型</li>
+<li>数据平滑</li>
+<li>汉语分词</li>
+<li>HMM</li>
+<li>ME&amp;CRF</li>
+<li>词类标注</li>
+<li>常见深度学习模型</li>
+<li>词向量</li>
+<li>上下文无关文法的句法分析</li>
+<li>PCFG和统计句法分析</li>
+<li>依存句法分析</li>
+<li>话题模型</li>
+<li>自动对齐</li>
+<li>ML</li>
+</ul>
+<hr>
+]]></content>
+		</item>
+		
+		<item>
+			<title>PaperWeekly-1: nlp中的实体关系抽取方法总结笔记</title>
+			<link>https://hitchcock717.github.io/posts/paperweekly-1/paperweekly-1/</link>
+			<pubDate>Tue, 24 Mar 2020 00:00:00 +0000</pubDate>
+			
+			<guid>https://hitchcock717.github.io/posts/paperweekly-1/paperweekly-1/</guid>
+			<description>The source comes from: https://zhuanlan.zhihu.com/p/77868938 Catagory Q1：与联合抽取对比，Pipeline方法有哪些缺点？ Q2：NER除了LSTM+CRF，还有哪些解码方式？如何解决嵌套实体问题？</description>
+			<content type="html"><![CDATA[<blockquote>
+<p>The source comes from: <a href="https://zhuanlan.zhihu.com/p/77868938">https://zhuanlan.zhihu.com/p/77868938</a></p>
+</blockquote>
+<h1 id="catagory">Catagory</h1>
+<ol>
+<li><a href="#Q1%EF%BC%9A%E4%B8%8E%E8%81%94%E5%90%88%E6%8A%BD%E5%8F%96%E5%AF%B9%E6%AF%94%EF%BC%8CPipeline%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%E7%BC%BA%E7%82%B9%EF%BC%9F">Q1：与联合抽取对比，Pipeline方法有哪些缺点？</a></li>
+<li><a href="#Q2%EF%BC%9ANER%E9%99%A4%E4%BA%86LSTM+CRF%EF%BC%8C%E8%BF%98%E6%9C%89%E5%93%AA%E4%BA%9B%E8%A7%A3%E7%A0%81%E6%96%B9%E5%BC%8F%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%B5%8C%E5%A5%97%E5%AE%9E%E4%BD%93%E9%97%AE%E9%A2%98%EF%BC%9F">Q2：NER除了LSTM+CRF，还有哪些解码方式？如何解决嵌套实体问题？</a></li>
+<li><a href="#Q3%EF%BC%9APipeline%E4%B8%AD%E7%9A%84%E5%85%B3%E7%B3%BB%E5%88%86%E7%B1%BB%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%9F%E5%A6%82%E4%BD%95%E5%BA%94%E7%94%A8%E5%BC%B1%E7%9B%91%E7%9D%A3%E5%92%8C%E9%A2%84%E8%AE%AD%E7%BB%83%E6%9C%BA%E5%88%B6%EF%BC%9F%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E9%AB%98%E5%A4%8D%E6%9D%82%E5%BA%A6%E9%97%AE%E9%A2%98%E3%80%81%E8%BF%9B%E8%A1%8Cone-pass%E5%85%B3%E7%B3%BB%E5%88%86%E7%B1%BB%EF%BC%9F">Q3：Pipeline中的关系分类有哪些常用方法？如何应用弱监督和预训练机制？怎么解决高复杂度问题、进行one-pass关系分类？</a></li>
+<li><a href="#Q4%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%B3%E7%B3%BB%E9%87%8D%E5%8F%A0&amp;%E5%A4%8D%E6%9D%82%E5%85%B3%E7%B3%BB%E9%97%AE%E9%A2%98%EF%BC%9F">Q4：什么是关系重叠&amp;复杂关系问题？</a></li>
+<li><a href="#Q5%EF%BC%9A%E8%81%94%E5%90%88%E6%8A%BD%E5%8F%96%E9%9A%BE%E7%82%B9%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F%E8%81%94%E5%90%88%E6%8A%BD%E5%8F%96%E6%80%BB%E4%BD%93%E4%B8%8A%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%EF%BC%9F%E5%90%84%E6%9C%89%E5%93%AA%E4%BA%9B%E7%BC%BA%E7%82%B9%EF%BC%9F">Q5：联合抽取难点在哪里？联合抽取总体上有哪些方法？各有哪些缺点？</a></li>
+<li><a href="#Q6%EF%BC%9A%E4%BB%8B%E7%BB%8D%E5%9F%BA%E4%BA%8E%E5%85%B1%E4%BA%AB%E5%8F%82%E6%95%B0%E7%9A%84%E8%81%94%E5%90%88%E6%8A%BD%E5%8F%96%E6%96%B9%E6%B3%95%EF%BC%9F">Q6：介绍基于共享参数的联合抽取方法？</a></li>
+<li><a href="#Q7%EF%BC%9A%E4%BB%8B%E7%BB%8D%E5%9F%BA%E4%BA%8E%E8%81%94%E5%90%88%E8%A7%A3%E7%A0%81%E7%9A%84%E8%81%94%E5%90%88%E6%8A%BD%E5%8F%96%E6%96%B9%E6%B3%95%EF%BC%9F">Q7：介绍基于联合解码的联合抽取方法？</a></li>
+<li><a href="#Q8%EF%BC%9A%E5%AE%9E%E4%BD%93%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96%E7%9A%84%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF%E5%92%8C%E6%8C%91%E6%88%98%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E4%BD%8E%E8%B5%84%E6%BA%90%E5%92%8C%E5%A4%8D%E6%9D%82%E6%A0%B7%E6%9C%AC%E4%B8%8B%E7%9A%84%E5%AE%9E%E4%BD%93%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96%EF%BC%9F%E5%A6%82%E4%BD%95%E5%BA%94%E7%94%A8%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">Q8：实体关系抽取的前沿技术和挑战有哪些？如何解决低资源和复杂样本下的实体关系抽取？如何应用图神经网络</a></li>
+</ol>
+<hr>
+<p><img src="paper-structure.jpg" alt="抽取任务概述"></p>
+<h1 id="q1与联合抽取对比pipeline方法有哪些缺点">Q1：与联合抽取对比，Pipeline方法有哪些缺点？</h1>
+<h3 id="知识点事件抽取-pipeline法">知识点：事件抽取-Pipeline法</h3>
+<p>化整为零，搞一堆分类器：Trigger Classifier, Argument Classifier&hellip;缺点很明显，由于流程过长，各自为政，导致误差积累。</p>
+<h1 id="q2ner除了lstmcrf还有哪些解码方式如何解决嵌套实体问题">Q2：NER除了LSTM+CRF，还有哪些解码方式？如何解决嵌套实体问题？</h1>
+<h3 id="关于lstmhttpsblogcsdnnetjerr__yarticledetails58598296"><a href="https://blog.csdn.net/Jerr__y/article/details/58598296">关于LSTM</a></h3>
+<p>先得提到著名的RNN，“有记忆”的神经网络。可以把 RNNs 看成是一个普通的网络做了多次复制后叠加在一起组成的。每一网络会把它的输出传递到下一个网络中。我们可以把 RNNs 在时间步上进行展开，就得到下图这样：<img src="RNN.png" alt="RNN">
+LSTM是特殊的、更好用的RNN，尤其对于上下文预测间隔较长的情况，LSTM很有用。相比RNN中间为单一的tanh层，LSTM更复杂。</p>
+<h3 id="核心思想">核心思想</h3>
+<ul>
+<li>利用cell传输信息</li>
+<li>利用门过滤信息：具体通过sigmoid+逐点相乘的方法</li>
+<li>sigmoid相当于bool值，0为否，1为是</li>
+<li>门结构包括传入门，遗忘门，输出门</li>
+<li>遗忘门(用来保留信息)，传入门(决定让哪些新信息加入cell)</li>
+</ul>
+<h3 id="softmax函数">Softmax函数</h3>
+<p>用于多分类，将多个神经元映射进（0，1）区间，按概率比较。大概公式就是这样：
+<img src="Softmax.png" alt="Softmax公式"></p>
+<h3 id="其他激活函数httpsblogcsdnnetshenxiaoming77articledetails76795445"><a href="https://blog.csdn.net/shenxiaoming77/article/details/76795445">其他激活函数</a></h3>
+<p><img src="activate.jpg" alt="Sigmoid，Tahn">
+tahn将一个实数输入映射到[-1,1]范围内，如上图（右）所示。当输入为0时，tanh函数输出为0，符合我们对激活函数的要求。然而，tanh函数也存在梯度饱和问题，导致训练效率低下。
+<img src="ReLu.jpg" alt="ReLu">
+相比sigmoid和tanh函数，Relu激活函数的优点在于：</p>
+<blockquote>
+<p>梯度不饱和。梯度计算公式为：。因此在反向传播过程中，减轻了梯度弥散的问题，神经网络前几层的参数也可以很快的更新。
+计算速度快。正向传播过程中，sigmoid和tanh函数计算激活值时需要计算指数，而Relu函数仅需要设置阈值。
+因此，Relu激活函数可以极大地加快收敛速度，相比tanh函数，收敛速度可以加快6倍（如上图（右）所示）。</p>
+</blockquote>
+<h3 id="实体重叠问题">实体重叠问题</h3>
+<p>文章用《叶圣陶散文选集》说明该问题，作者和作品两个实体混淆。解决办法：实体抽取解码</p>
+<h3 id="办法1序列标注softmax--crf">办法1：序列标注（Softmax + CRF）</h3>
+<p>本质是token-level的多分类问题，token指的是字符级别的概念；相比segment-level，范围更大，说的就是词切分，也就是分词
+CRF：给序列中的每一个token进行分类，好处是加入了上下文的联系。</p>
+<h3 id="对于分词边界错误的改进方法-latticelstmcrfhttpsblogcsdnnetqq_32728345articledetails81264853"><a href="https://blog.csdn.net/qq_32728345/article/details/81264853">对于分词边界错误的改进方法-LatticeLSTM+CRF</a></h3>
+<p><img src="LatticeLSTM.png" alt="示意图">
+如图所示，先将每个字符切分开，再用红色的cell表示中文词汇，形成网格结构。
+词汇边界通常为实体边界，根据大量语料构建词典，若当前字符与之前字符构成词汇，则从这些词汇中提取信息，联合更新记忆状态。
+jieba的全切分模式和搜索引擎模式，可以将所有组合列出；若遇到以相同词结尾的词汇时，会根据预先准备的字、词典，训练字词级别的向量。</p>
+<h2 id="办法1的缺陷及改进">办法1的缺陷及改进</h2>
+<p>序列标注采取BILOU（Begin, Inside, Last, Outside, Unit)）标注框架，每一个token只能属于一种，不能解决重叠实体问题。
+改进1：Softmax——&gt;Sigmoid（0/1表达）
+改进2：增加标签，合并
+两种方式本质上都是给实体增加说明信息，不同的是一个是用数字结构，一个是用标签信息。</p>
+<h2 id="办法2指针网络pointernethttpszhuanlanzhihucomp48959800">办法2：<a href="https://zhuanlan.zhihu.com/p/48959800">指针网络（PointerNet）</a></h2>
+<p>先说seq2seq，常用在MT中做序列对齐。其中，加入Attention机制后，由于对encoder的隐含状态加权拼接至decoder，实现软对齐，效果提升。
+PointerNet是Attention机制的简化，用于解决类似寻找凸包问题。对于凸包问题的示例，如下：
+<img src="Convex.jpg" alt="凸包问题">
+传统seq2seq模型解决方式是输入四个点的坐标，比如input list = [start, 1, 2, 3, 4, end]，则output list = [start, 1, 4, 2, 1, end]
+一旦list长度改变，则无法预测大于4的数字，而PointerNet可以。因为添加了指针，所以output list跟随input list变动而变动。而为什么说PointerNet是Attention机制的衍生，是因为Attention作用在encoder的weight变成了pointer，如想对某个元素增加weight，则直接point该元素即可。
+换句话说，传统带有注意力机制的seq2seq模型输出的是针对输出词汇表的一个概率分布，而Pointer Networks输出的则是针对输入文本序列的概率分布。</p>
+<h3 id="pointernet在ner中">PointerNet在NER中</h3>
+<ul>
+<li>MRC-QA + Single-Layer-PointerNet
+这种方式目的在于将原文本构建成完成的query，在补充的后续query部分加入先验语义知识。根据不同的语义，使用一层PointerNet指明头尾指针。</li>
+<li>Multiple-Layer-PointerNet
+这种方式弥补了单层只能抽取单类型实体的不足，添加了多层label。
+简单来说，PointerNet仍具有收敛速度慢、计算量大的缺点。</li>
+</ul>
+<h2 id="办法3片段排列分类">办法3：片段排列+分类</h2>
+<p>扩大了从token-level抽取的概念，将重点放在span-level。这种方式将含T个token的文本按固定顺序一一列出，如叶，叶圣，叶圣陶&hellip;缺点是对于长文本，一是无意义的样本较多，需削减；二是计算量大。</p>
+<h1 id="q3pipeline中的关系分类有哪些常用方法如何应用弱监督和预训练机制怎么解决高复杂度问题进行one-pass关系分类">Q3：Pipeline中的关系分类有哪些常用方法？如何应用弱监督和预训练机制？怎么解决高复杂度问题、进行one-pass关系分类？</h1>
+<ul>
+<li>模板匹配：一是人工判断上下位关系；二是统计模板，利用search engine如维基百科里的知识图谱，保留置信度高的</li>
+<li>半监督学习：
+（1）自举（bootstrapping），利用少量种子集合举一反三。优点是构建成本低，缺点是造成语义漂移。对于语义漂移的解释如下，<a href="https://blog.csdn.net/u012485480/article/details/80208821">参考</a></li>
+</ul>
+<blockquote>
+<p>众所周知的是bootstrapping通常会获取与种子无关的实例。例如对于任务“从网络语料库中收集常见景点名称”。给定词语“Geneva”(日内瓦)和“Bali”(巴黎)作为种子实例，bootstrapping最终将学习成通用模式如“pictures”和“photos”，这些与其他不相关实例同时出现。随后的迭代可能会获得与这些通用模式共同出现的频繁词语，如“Britney Spears”，这种现象被称为语义漂移。</p>
+</blockquote>
+<p>（2）远程监督，假定某实体对满足某个关系，则包含该实体对的所有句子（称为Bag）都可能满足该关系。但实际情况远非如此，所以有如下改进：</p>
+<ul>
+<li>多示例学习：对包含实体对的句子进行分类，如PCNNs模型。针对远程监督中的wrong label problem，采用多示例学习的方式从训练集中抽取置信度较高的训练样例模型，一般构建过程包括word embeddings——&gt;convolution——&gt;pooling——&gt;Softmax multi-label output——&gt;multi-example learning。后续加入Attention机制，出现了APCNNs模型。相比PCNNs，在pooling层后，softmax之前加入基于句子级别的attention机制（能够根据特定关系为实体对的每个句子分配权重，通过不断学习使得有效句子获得高权重，有噪音的句子获得低权重。<a href="https://www.jianshu.com/p/bd324b312903">参考</a></li>
+<li>强化学习：优化Bag掺杂大量噪声的情况，包括样例选择器和关系分类器。前者负责从样例中筛选高质量句子，后者向前者做出反馈，提供更优的选择策略。</li>
+<li>预训练机制：无需任何知识库和人工标注，将实体作为“blank”标识符进行填充；包含同样实体对的句子为正样本，反之为负样本
+（3）监督学习，主要分为基于特征（定义特征集合）、核函数（无需定义特征集合，核函数只是用来计算映射到高维空间之后的内积）和深度学习（主要贡献在于对Bag只需one-pass输入即可进行多个关系分类）。</li>
+</ul>
+<h1 id="q4什么是关系重叠复杂关系问题">Q4：什么是关系重叠&amp;复杂关系问题？</h1>
+<p><img src="Relationmap.jpg" alt="关系图示例"></p>
+<ul>
+<li>a：正常关系问题</li>
+<li>b：关系重叠问题，一对多。如“张学友演唱过《吻别》《在你身边》”中，存在2种关系：「张学友-歌手-吻别」和「张学友-歌手-在你身边」</li>
+<li>c：关系重新问题，一对实体存在多种关系。如“周杰伦作曲并演唱《七里香》”中，存在2种关系：「周杰伦-歌手-七里香」和「周杰伦-作曲-七里香」</li>
+<li>d：复杂关系问题，由实体重叠导致。如《叶圣陶散文选集》中，叶圣陶-作品-叶圣陶散文选集；</li>
+<li>e：复杂关系问题，关系交叉导致。如“张学友、周杰伦分别演唱过《吻别》《七里香》”，「张学友-歌手-吻别」和「周杰伦-歌手-七里香」</li>
+</ul>
+<h1 id="q5联合抽取难点在哪里联合抽取总体上有哪些方法各有哪些缺点">Q5：联合抽取难点在哪里？联合抽取总体上有哪些方法？各有哪些缺点？</h1>
+<p>联合抽取模型分类：</p>
+<ul>
+<li>共享参数（通过共享参数（共享输入特征或者内部隐层状态）实现联合，此种方法对子模型没有限制，但是由于使用独立的解码算法，导致实体模型和关系模型之间交互不强。）</li>
+<li>联合解码（需要对子模型特征的丰富性以及联合解码的精确性之间做权衡）
+需要做的：需要一个方法可以同时考虑一个句子中所有实体、实体与关系、关系与关系之间的交互。</li>
+</ul>
+<h1 id="q6介绍基于共享参数的联合抽取方法">Q6：介绍基于共享参数的联合抽取方法？</h1>
+<p><img src="Papers.jpg" alt="主要的研究方法">
+在联合抽取中的实体和关系抽取的解码方式与Q2中的实体抽取的解码方式基本一致，主要包括：序列标注CRF/SoftMax、指针网络、分类SoftMax、Seq2Seq等。基于共享参数的联合抽取，实体抽取loss会与关系抽取loss相加。</p>
+<h1 id="q7介绍基于联合解码的联合抽取方法">Q7：介绍基于联合解码的联合抽取方法？</h1>
+<p>简单了解三种统一实体和关系的标注框架：</p>
+<ul>
+<li>用关系标签进行BIOES标注，head实体序号为1，tail实体序号为2。但该框架只能对实体在某个关系中进行表示，而对多关系无用</li>
+<li>对n个token的句子有n个标注框架，采用BIES标注，用CRF解码。该框架复杂度自然很高了。</li>
+<li>百度PaddlePaddle的SPO标注框架，这个挺有意思。
+<img src="PaddlePaddle.jpg" alt="PaddlePaddle标注框架"></li>
+<li>使用方法的是token level 的多label分类，即每一个token对应多个label。</li>
+<li>标注框架十分巧妙，如上图示例中形成的2个spo三元组，「王雪纯-配音-晴雯」和「王雪纯-配音-红楼梦」，存在两个关系「配音-人物」和「配音-作品」，多label标签就以关系标签建立。</li>
+<li>问题还在于对实体重叠关系抽取、多重同类关系无用，需引入后处理逻辑。</li>
+</ul>
+<h1 id="q8实体关系抽取的前沿技术和挑战有哪些如何解决低资源和复杂样本下的实体关系抽取如何应用图神经网络">Q8：实体关系抽取的前沿技术和挑战有哪些？如何解决低资源和复杂样本下的实体关系抽取？如何应用图神经网络</h1>
+<ol>
+<li>pipeline中的NER
+<strong>实体重叠问题 ——&gt; 词典+规则</strong></li>
+<li>关系分类问题
+降低计算复杂度，拒绝重复编码句子，而是one-pass。<strong>在低资源场景下，采取远程监督的方法确实可以自动进行语料构建，但其中针对样本噪音的降噪方法是否还有提升空间？降噪方法能否做到与模型无关，是否可以借鉴图像分类中很有效的置信学习呢?</strong></li>
+<li>联合抽取
+难点是如何加强实体模型和关系模型之间的交互，怎么对需要对子模型特征的丰富性以及联合解码的精确性之间做权衡？</li>
+<li>低资源和复杂样本问题
+对于少次关系学习问题：他们提出了FewRel 2.0，在原版数据集FewRel的基础上增加了以下两大挑战：领域迁移（domain adaptation）和“以上都不是”检测（none-of-the-above detection）。
+对于文档级别的关系抽取问题：提出了DocRED数据集[42]，是一个大规模的人工标注的文档级关系抽取数据集，文档级关系抽取任务要求模型具有强大的模式识别、逻辑推理、指代推理和常识推理能力。</li>
+</ol>
+<h1 id="参考文献">参考文献</h1>
+<p>以下列举原文档的参考，以供日后慢慢研读。</p>
+<p>Hierarchically-Refined Label Attention Network for Sequence Labeling <a href="https://arxiv.org/pdf/1908.08676.pdf">https://arxiv.org/pdf/1908.08676.pdf</a>
+Chinese NER Using Lattice LSTM <a href="https://arxiv.org/pdf/1805.02023.pdf">https://arxiv.org/pdf/1805.02023.pdf</a>
+abNeural Architectures for Nested NER through Linearization
+Nested named entity recognition revisited.
+abA Unified MRC Framework for Named Entity Recognition <a href="https://arxiv.org/pdf/1910.11476.pdf">https://arxiv.org/pdf/1910.11476.pdf</a>
+<a href="https://zhuanlan.zhihu.com/p/89019478">https://zhuanlan.zhihu.com/p/89019478</a>
+abcdSpan-Level Model for Relation Extraction <a href="https://www.aclweb.org/anthology/P19-1525.pdf">https://www.aclweb.org/anthology/P19-1525.pdf</a>
+abDistant Supervision for Relation Extraction via Piecewise Convolutional Neural Networks. EMNLP
+Selective Attention over Instances (Lin 2016)
+Relation Extraction with Multi-instance Multi-label Convolutional Neural Networks.
+Distant Supervision for Relation Extraction with Sentence-Level Attention and Entity Descriptions
+Reinforcement Learning for Relation Classification from Noisy Data
+abcMatching the Blanks: Distributional Similarity for Relation Learning <a href="https://arxiv.org/pdf/1906.03158.pdf">https://arxiv.org/pdf/1906.03158.pdf</a>
+abExtracting Multiple-Relations in One-Pass with Pre-Trained Transformers
+abcdSimultaneously Self-Attending to All Mentions for Full-Abstract Biological Relation Extraction <a href="https://www.aclweb.org/anthology/N18-1080.pdf">https://www.aclweb.org/anthology/N18-1080.pdf</a>
+abc基于深度学习的联合实体关系抽取 <a href="http://www.czsun.site/publications/thesis.pdf">http://www.czsun.site/publications/thesis.pdf</a>
+End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures <a href="https://www.aclweb.org/anthology/P16-1105.pdf">https://www.aclweb.org/anthology/P16-1105.pdf</a>
+Going out on a limb: Joint Extraction of Entity Mentions and Relations without Dependency Trees <a href="https://pdfs.semanticscholar.org/bbbd/45338fbd85b0bacf23918bb77107f4cfb69e.pdf?_ga=2.119149259.311990779.1584453795-1756505226.1584453795">https://pdfs.semanticscholar.org/bbbd/45338fbd85b0bacf23918bb77107f4cfb69e.pdf?_ga=2.119149259.311990779.1584453795-1756505226.1584453795</a>
+Extracting Relational Facts by an End-to-End Neural Model with Copy Mechanism
+abJoint entity recognition and relation extraction as a multi-head selection problem
+BERT-Based Multi-Head Selection for Joint Entity-Relation Extraction
+Adversarial training for multi-context joint entity and relation extraction
+abJoint Extraction of Entities and Relations Based on a Novel Decomposition Strategy
+Entity-Relation Extraction as Multi-Turn Question Answering <a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1905.05529.pdf">https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1905.05529.pdf</a>
+abcdhttps://zhuanlan.zhihu.com/p/65870466
+Span-based Joint Entity and Relation Extraction with Transformer Pre-training  <a href="https://arxiv.org/pdf/1909.07755.pdf">https://arxiv.org/pdf/1909.07755.pdf</a>
+Joint inference for fine-grained opinion extraction
+Investigating lstms for joint extraction of opinion entitiesandrelations.
+Incremental joint extraction of entity mentions and relations.
+End-to-end neural relation extrac- tion with global optimization.
+Jointextractionofentities and relations based on a novel graph scheme
+Joint extraction of entities and relations based on a novel tagging scheme. <a href="https://arxiv.org/pdf/1706.05075.pdf">https://arxiv.org/pdf/1706.05075.pdf</a>
+Joint Extraction of Entities and Overlapping Relations Using Position-Attentive Sequence Labeling
+abhttps://github.com/PaddlePaddle/Research/tree/master/KG/DuIE_Baseline
+Confident Learning: Estimating Uncertainty in Dataset Labels
+Graph Neural Networks with Generated Parameters for Relation
+GraphRel: Modeling Text as Relational Graphs for Joint Entity and Relation Extraction
+Attention Guided Graph Convolutional Networks for Relation Extraction
+Joint Type Inference on Entities and Relations via Graph Convolutional Networks
+abhttps://www.zhihu.com/search?type=content&amp;q=%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96
+FewRel 2.0: Towards More Challenging Few-Shot Relation Classification
+DocRED: A Large-Scale Document-Level Relation Extraction Dataset
+Knowledge-Augmented Language Model and its Application to Unsupervised Named-Entity Recognition
+Description-Based Zero-shot Fine-Grained Entity Typing
+Zero-Shot Entity Linking by Reading Entity Descriptions
+Multi-Level Matching and Aggregation Network for Few-Shot Relation Classification
+Exploiting Entity BIO Tag Embeddings and Multi-task Learning for Relation Extraction with Imbalanced Data
+Massively Multilingual Transfer for NER</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>CQL Query Language -- Neo4j</title>
+			<link>https://hitchcock717.github.io/posts/neo4j/neo4j/</link>
+			<pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
+			
+			<guid>https://hitchcock717.github.io/posts/neo4j/neo4j/</guid>
+			<description>This document is summarized based on the introdcution of Neo4j in W3Cschool Neo4j CQL common order/clause: ###CREATE 1.1 Used to create non-attar node; create a non-statistic node Grammar: CREATE (&amp;lt;node-name:) : node name to create : node tag name 1.2 Used to create attractive node Grammar: CREATE( ​ :​ { ​ :​ &amp;hellip;&amp;hellip; ​ :​ } ) Attr is a key-value pair. 1.3 Used to create one</description>
+			<content type="html"><![CDATA[<p>This document is summarized based on the introdcution of Neo4j in <a href="https://www.w3cschool.cn/neo4j/neo4j_cql_introduction.html">W3Cschool</a></p>
+<h2 id="neo4j-cql-common-orderclause">Neo4j CQL common order/clause:</h2>
+<ol>
+<li>
+<p>###CREATE</p>
+<h4 id="11-used-to-create-non-attar-node-create-a-non-statistic-node">1.1 Used to create non-attar node; create a non-statistic node</h4>
+<h3 id="grammar-create-node-namelabel-name">Grammar: CREATE (&lt;node-name:<!-- raw HTML omitted -->)</h3>
+<p><!-- raw HTML omitted -->: node name to create</p>
+<p><!-- raw HTML omitted -->: node tag name</p>
+<h4 id="12-used-to-create-attractive-node">1.2 Used to create attractive node</h4>
+<h3 id="grammar-create">Grammar: CREATE(</h3>
+<p>​							<!-- raw HTML omitted -->:<!-- raw HTML omitted --></p>
+<p>​							{</p>
+<p>​								<!-- raw HTML omitted -->:<!-- raw HTML omitted --></p>
+<p>​								&hellip;&hellip;</p>
+<p>​								<!-- raw HTML omitted -->:<!-- raw HTML omitted --></p>
+<p>​							}</p>
+<h3 id="heading">)</h3>
+<p>Attr is a key-value pair.</p>
+<h3 id="13-used-to-create-one-label-for-node">1.3 Used to create one label for node</h3>
+<h3 id="used-to-create-multiple-labels-for-node">Used to create multiple labels for node</h3>
+<p>Grammar: CREATE (<!-- raw HTML omitted -->:<!-- raw HTML omitted -->:<!-- raw HTML omitted -->&hellip;&hellip;:<!-- raw HTML omitted -->)</p>
+<h3 id="used-to-create-one-label-for-relation">Used to create one label for relation</h3>
+<p>Grammar: CREATE(<!-- raw HTML omitted -->:<!-- raw HTML omitted -->)-[(<!-- raw HTML omitted -->:<!-- raw HTML omitted -->)]—&gt;(<!-- raw HTML omitted -->:<!-- raw HTML omitted -->)</p>
+</li>
+<li>
+<h3 id="match">MATCH</h3>
+<p>Used to achieve data related to nodes and attrs;</p>
+<p>Used to achieve data related to nodes, relations and attrs.</p>
+<h3 id="grammar-match">Grammar: MATCH(</h3>
+<p>​								<!-- raw HTML omitted -->:<!-- raw HTML omitted --></p>
+<p>)</p>
+</li>
+<li>
+<h3 id="return">RETURN</h3>
+<p>Used to retrieve some attrs of node;</p>
+<p>Used to retrieve all attrs of node;</p>
+<p>Used to retrieve some attrs of node and relations;</p>
+<p>Used to retrieve all attrs of node and relations</p>
+<h3 id="grammar-return">Grammar: RETURN</h3>
+<p>​							<!-- raw HTML omitted -->.<!-- raw HTML omitted -->,</p>
+<p>​							&hellip;&hellip;.</p>
+<p>​							<!-- raw HTML omitted -->.<!-- raw HTML omitted --></p>
+<p><strong>Concat &lsquo;Match&rsquo; and &lsquo;Return&rsquo;</strong> to retrieve</p>
+<p>E.G. MATCH(dept: Dept)</p>
+<p>​       RETURN dept.deptno, dept.dname</p>
+</li>
+<li>
+<h3 id="where">WHERE</h3>
+</li>
+<li>
+<h3 id="delete">DELETE</h3>
+</li>
+<li>
+<h3 id="remove">REMOVE</h3>
+</li>
+<li>
+<h3 id="order-by">ORDER BY</h3>
+</li>
+<li>
+<h3 id="set">SET</h3>
+</li>
+</ol>
+<h2 id="relation">RELATION</h2>
+<p><strong>Unilateralism</strong></p>
+<p><strong>Bilateralism</strong></p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Python之数据类型转换</title>
+			<link>https://hitchcock717.github.io/posts/data-type-conversion/</link>
+			<pubDate>Mon, 25 Nov 2019 18:37:56 +0000</pubDate>
+			
+			<guid>https://hitchcock717.github.io/posts/data-type-conversion/</guid>
+			<description>参考自格物blog INT() Three types are allowed to convert to int float: int(-14.2) = -14 str: int(&amp;lsquo;1209&amp;rsquo;) = 1209; int(&#39;-15&#39;) = -15 bytes: int(b&#39;1232&#39;) = 1232 FLOAT() Three types are allowed to convert to float int: float(-1324) = -1324.0 str: conversion is not allowed if &amp;lsquo;+&amp;rsquo;, &amp;lsquo;-&amp;rsquo;, [0-9], &amp;lsquo;.&amp;rsquo; are not included float(&#39;-1209&#39;) = -1209.0; float(&#39;-0120.324&#39;) = -120.324 bytes: conversion is not allowed</description>
+			<content type="html"><![CDATA[<p><a href="https://shockerli.net/post/python3-data-type-convert/">参考自格物blog</a></p>
+<h2 id="int">INT()</h2>
+<p>Three types are allowed to convert to int</p>
+<ol>
+<li>float: int(-14.2) = -14</li>
+<li>str: int(&lsquo;1209&rsquo;) = 1209; int('-15') = -15</li>
+<li>bytes: int(b'1232') = 1232</li>
+</ol>
+<h2 id="float">FLOAT()</h2>
+<p>Three types are allowed to convert to float</p>
+<ol>
+<li>int: float(-1324) = -1324.0</li>
+<li>str: conversion is not allowed if &lsquo;+&rsquo;, &lsquo;-&rsquo;, [0-9], &lsquo;.&rsquo; are not included
+float('-1209') = -1209.0; float('-0120.324') = -120.324</li>
+<li>bytes: conversion is not allowed if &lsquo;+&rsquo;, &lsquo;-&rsquo;, [0-9], &lsquo;.&rsquo; are not included
+float(b'-1233') = -1233.0; float(b'-01233.234') = -1233.234</li>
+</ol>
+<h2 id="complex">COMPLEX()</h2>
+<p>Three types are allowed to convert to complex</p>
+<ol>
+<li>int: automatically add &lsquo;0j&rsquo; to imaginary number
+complex(12) = (12+0j)</li>
+<li>float: automatically add &lsquo;0j&rsquo; to imaginary number
+complex(-12.99) = (-12.99+0j)</li>
+<li>str: when str is being converted to complex, if the conversion type is int or float, the type of complex will be converted later; if totally suits the rule of complex expression, the conversion will be made instantly.
+complex('-12.12') = (-12.12+0j);
+complex(&lsquo;12.0&rsquo;) = (-12+0j) # cut the decimal
+complex('-13') = (-13+0j);
+complex('-13+8j') = (-13+8j);
+complex(b'12') = callback(Type &lsquo;bytes&rsquo; is not allowed);
+complex(&lsquo;12 + 9j&rsquo;) = callback(No whitespace is near &lsquo;+')</li>
+</ol>
+<h2 id="str">STR()</h2>
+<p>Every type could be converted to str</p>
+<ol>
+<li>int: str(12) = 12</li>
+<li>float: str(-14.30) = -14.3</li>
+<li>complex: when complex is being converted to str, the type of complex will be converted to standard complex expression and then to str.
+str(complex(12 + 9j)) = (12+9j)
+str(complex(12,9)) = (12+9j)</li>
+<li>bytes: str(b&rsquo;hello world) = b&rsquo;hello world&rsquo;;
+b&rsquo;hello world'.decode = hello world;
+str(b&rsquo;hello world', encoding=&lsquo;utf-8&rsquo;) = hello world;
+str(b'\xe4\xb8\xad\xe5\x9b\xbd', encoding=&lsquo;utf-8&rsquo;) = 中国</li>
+</ol>
+<h3 id="str-list">STR-LIST()</h3>
+<p>str: the result will be initially converted to standard &lsquo;list expression&rsquo; and then to str</p>
+<ol>
+<li>str([]) = [];</li>
+<li>str([1,2,3]) = [1,2,3]</li>
+<li>&lsquo;'.join([&lsquo;a&rsquo;,&lsquo;b&rsquo;,&lsquo;c&rsquo;]) = abc</li>
+</ol>
+<h3 id="str-tuple">STR-TUPLE()</h3>
+<p>str: the result will be initially converted to standard &lsquo;tuple expression&rsquo; and then to str</p>
+<ol>
+<li>str(()) = ()</li>
+<li>str((1,2,3)) = (1,2,3)</li>
+<li>&lsquo;'.join((&lsquo;a&rsquo;,&lsquo;b&rsquo;,&lsquo;c&rsquo;)) = abc</li>
+</ol>
+<h3 id="str-dict">STR-DICT()</h3>
+<p>str: the result will be initially converted to standard &lsquo;dict expression&rsquo; and then to str</p>
+<ol>
+<li>str({&lsquo;name&rsquo;:&lsquo;hello&rsquo;,&lsquo;age&rsquo;:18}) = {&lsquo;name&rsquo;:&lsquo;hello&quot;, &lsquo;age&rsquo;: 18}</li>
+<li>str({}) = {}</li>
+<li>&lsquo;'.join({&lsquo;name&rsquo;: &lsquo;hello&rsquo;, &lsquo;age&rsquo;: 18}) = nameage</li>
+</ol>
+<h3 id="str-set">STR-SET()</h3>
+<p>the result will be initially converted to standard &lsquo;set expression&rsquo; and then to str</p>
+<ol>
+<li>str(set({})) = set()</li>
+<li>str({1,2,3}) = {1,2,3}</li>
+<li>&lsquo;'.join({&lsquo;a&rsquo;, &lsquo;b&rsquo;, &lsquo;c&rsquo;}) = abc</li>
+</ol>
+<h2 id="btyes">BTYES()</h2>
+<p>only support str
+&lsquo;中国&rsquo;.encode() = b&rsquo;\xe4\xb4\xad\x32\x9b\xbd&rsquo;
+bytes(&lsquo;中国&rsquo;, encoding=&lsquo;utf-8&rsquo;) = #b&rsquo;\xe4\x6b\xad\xe6\x96\xbd&rsquo;</p>
+<h2 id="list">LIST()</h2>
+<p>only support sequence, such as str, tuple, dict, set</p>
+<ol>
+<li>str: list(&lsquo;1213ac&rsquo;) = [&lsquo;1&rsquo;,&lsquo;2&rsquo;,&lsquo;1&rsquo;,&lsquo;3&rsquo;,&lsquo;a&rsquo;,&lsquo;c&rsquo;]</li>
+<li>bytes: choose each bytes&rsquo; ASCII decimal system value
+list(b&rsquo;hello') = [104, 101, 108, 108, 111]</li>
+<li>tuple: just list((1,2,3)) = [1,2,3]</li>
+<li>dict: choose key-name as list-value
+list({&lsquo;name&rsquo;:&lsquo;hello&rsquo;, &lsquo;age&rsquo;: 18}) = [&lsquo;name&rsquo;, &lsquo;age&rsquo;]</li>
+<li>set: drop duplication, and then convert
+list({1,2,3,3,2,1}) = [1,2,3]</li>
+</ol>
+<h2 id="tuple">TUPLE()</h2>
+<p>Same as list, only support sequence</p>
+<ol>
+<li>str: tuple(&lsquo;中国人&rsquo;) = （&lsquo;中&rsquo;, &lsquo;国&rsquo;, &lsquo;人&rsquo;)</li>
+<li>bytes: tuple(b&rsquo;hello') = (104, 101, 108, 108, 111)</li>
+<li>list: tuple([1,2,3]) = (1,2,3)</li>
+<li>dict: tuple({&lsquo;name&rsquo;:&lsquo;hello&rsquo;, &lsquo;age&rsquo;: 18}) = (&lsquo;name&rsquo;, &lsquo;age&rsquo;)</li>
+<li>set: tuple({1,2,3,3,2,1}) = (1,2,3)</li>
+</ol>
+<h2 id="dict">DICT()</h2>
+<ol>
+<li>
+<p>str:
+1.1 import json
+'''
+import json
+user_info = &lsquo;{&lsquo;name&rsquo;:&lsquo;john&rsquo;, &lsquo;gender&rsquo;:&lsquo;male&rsquo;}&rsquo;
+print(json.loads(user_info))</p>
+<h1 id="namejohn-gendermale">{&lsquo;name&rsquo;:&lsquo;john&rsquo;, &lsquo;gender&rsquo;:&lsquo;male&rsquo;}</h1>
+<p>1.2 import eval # not recommended for serious safety problems
+1.3 import ast.literal_eval
+'''
+import ast
+user_info = &lsquo;{&lsquo;name&rsquo;:&lsquo;john&rsquo;, &lsquo;gender&rsquo;:&lsquo;male&rsquo;}&rsquo;
+user_dict = ast.literal_eval(user_info)
+print(user_dict)</p>
+<h1 id="namejohn-gendermale-1">{&lsquo;name&rsquo;:&lsquo;john&rsquo;, &lsquo;gender&rsquo;:&lsquo;male&rsquo;}</h1>
+</li>
+<li>
+<p>list:
+2.1 use zip to map two lists into a dict
+'''
+list1 = [1,2,3,4]
+list2 = [1,2,3]
+print(dict(zip(list1,list2)))</p>
+<h1 id="11-22-33">{1:1, 2:2, 3:3}</h1>
+<p>2.2 convert nesting list into dict
+'''
+li = [
+[1, 111],
+[2, 222],
+[3, 333],
+]
+print(dict(li))</p>
+<h1 id="1-111-2-222-3-333">{1: 111, 2: 222, 3: 333}</h1>
+</li>
+<li>
+<p>tuple:
+similar with list
+3.1 use zip to map two tuples into a dict
+'''
+tup1 = (1,2,3,4)
+tup2 = (1,2,3)
+print(dict(zip(list1,list2)))</p>
+<h1 id="11-22-33-1">{1:1, 2:2, 3:3}</h1>
+<p>2.2 convert nesting tuple into dict
+'''
+tp = ()
+(1, 111),
+(2, 222),
+(3, 333),
+)
+print(dict(tp))</p>
+<h1 id="1-111-2-222-3-333-1">{1: 111, 2: 222, 3: 333}</h1>
+</li>
+<li>
+<p>set:
+'''
+set1 = {1,2,3}
+set2 = {&lsquo;a&rsquo;,&lsquo;b&rsquo;,&lsquo;c&rsquo;}
+print(dict(zip(set1,set2)))</p>
+<h1 id="1c-2a-3b">{1:&lsquo;c&rsquo;, 2:&lsquo;a&rsquo;, 3:&lsquo;b&rsquo;}</h1>
+</li>
+</ol>
+<h2 id="set">SET()</h2>
+<ol>
+<li>str: cut str into tuple and then drop duplications into a set
+print(set(&lsquo;hello&rsquo;))
+#{&lsquo;l&rsquo;,&lsquo;o&rsquo;,&lsquo;e&rsquo;,&lsquo;h&rsquo;}</li>
+<li>bytes: set(b&rsquo;hello') = {104, 108, 101, 111}</li>
+<li>list: drop duplications in list first, and then convert
+set([1,2,3,2,1]) = {1,2,3}</li>
+<li>tuple: drop duplications in list first, and then convert
+set((1,2,3,2,1)) = {1,2,3}</li>
+<li>dict: choose dict{key-name} to group them
+set({&lsquo;name&rsquo;:&lsquo;hello&rsquo;, &lsquo;age&rsquo;:18})</li>
+</ol>
+<h2 id="other-types">OTHER-TYPES</h2>
+<p>Convert embedded object:</p>
+<blockquote>
+<ol>
+<li>str(int)</li>
+</ol>
+</blockquote>
+<ol start="2">
+<li>str(hex)
+Convert class instance:
+'''
+class Hello:
+pass
+obj = Hello()
+print(str(obj))
+<h1 id="__main__hello-object-at-0x1071c6635">&lt;<strong>main</strong>.Hello object at 0x1071c6635&gt;</h1>
+</li>
+</ol>
+<p>Conver function:
+'''
+def hello():
+pass
+print(str(hello))
+# &lt;function hello at 0x103d3a023&gt;</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>比特币</title>
+			<link>https://hitchcock717.github.io/posts/bitcoin/bitcoin/</link>
+			<pubDate>Fri, 22 Nov 2019 18:37:56 +0000</pubDate>
+			
+			<guid>https://hitchcock717.github.io/posts/bitcoin/bitcoin/</guid>
+			<description>Bitcoin —— Crypto-Currency Two functions Hash Signiture (Public-key cryptography) Hash Three functions 1. collision resistance 抗碰撞性 collison refers to: input x != y; output H(x) = H(y) ** In theory, it works** Practice: Upload a file on the cloud platform, how to prevent anyone from tampering it? Solution: 1. Consider it as an input file, caculate its hash(H(input)) and save it in local space. Then upload</description>
+			<content type="html"><![CDATA[<h2 id="bitcoin--crypto-currency">Bitcoin —— Crypto-Currency</h2>
+<p><em>Two functions</em></p>
+<ol>
+<li>Hash</li>
+<li>Signiture (Public-key cryptography)</li>
+</ol>
+<h3 id="hash">Hash</h3>
+<p><em>Three functions</em>
+<strong>1. collision resistance</strong> 抗碰撞性</p>
+<blockquote>
+<p>collison refers to:
+input x != y;
+output H(x) = H(y)</p>
+</blockquote>
+<pre><code>** In theory, it works**
+
+Practice: Upload a file on the cloud platform, how to prevent anyone from tampering it?
+Solution: 
+1. Consider it as an input file, caculate its hash(H(input)) and save it in local space. Then upload it. 
+2. Download the file from the cloud and recaculate its hash.
+3. Compare two hashes. If different, it has been tampered.
+</code></pre>
+<blockquote>
+<p>MD5: Hash algorithm
+can produce a 128-bit hash value
+can be cracked
+cannot be utilized into SSL pub-key certificate &amp; digital signiture</p>
+</blockquote>
+<p><strong>2. Hiding</strong> 单向不可逆性</p>
+<blockquote>
+<p>input X ——&gt; H(X)
+H(X) !——&gt; X</p>
+</blockquote>
+<pre><code>** Brute force can crack it**
+</code></pre>
+<h4 id="collision-resistance--hiding--digital-commitment">Collision resistance + Hiding ——&gt; Digital Commitment</h4>
+<blockquote>
+<p>Initially, publicize H(X); then publicize X, because H(X) is known and hiding allows it is impossible to deduce X from H(X). To verify X, recaculate H(X).</p>
+</blockquote>
+<p><strong>3. Puzzle Friendly</strong></p>
+<blockquote>
+<p>It is unpredictable to calculate H(X). Brute Force is the only path.
+POW proof of work
+Get newest info of block header; then try nonce, calculate (SHA-256(SHA-256(block header)) to satisfy the requirement of <strong>H(block header) &lt;= target</strong></p>
+</blockquote>
+<h3 id="signiture">Signiture</h3>
+<pre><code>1. private key represents miner's control over BitCoin
+2. Used in Transaction
+</code></pre>
+<h2 id="bitcoin--data-structure">BitCoin —— Data Structure</h2>
+<p><em>Two Structure</em></p>
+<ol>
+<li>Hash Pointers</li>
+<li>Merkle Tree</li>
+</ol>
+<p><strong>Hash Pointers</strong>
+图示：{% asset_img WechatIMG604.png BitCoin-1 %} <a href="https://www.jianshu.com/p/f3570d8e1d27">摘自简书</a></p>
+<blockquote>
+<p>Compared with normal pointers, hash pointers can detect tampering by saving extra hash into the structure body.
+图示：{% asset_img WechatIMG605.png BitCoin-2 %}  <a href="https://www.jianshu.com/p/f3570d8e1d27">摘自简书</a>
+According to above pic, there is only a need to remember the last hash if detecting tampering because block chain is a linked list using hash pointers.</p>
+</blockquote>
+<p><strong>Merkle Tree</strong>
+图示：{% asset_img WechatIMG606.png BitCoin-3 %}  <a href="https://www.jianshu.com/p/f3570d8e1d27">摘自简书</a></p>
+<blockquote>
+<p>First Tier(root node): Root Hash saved; Hash(root hash) = Hash(concat[hash(child node1)+hash(child node2)])
+Second/Third Tier: Hash Pointers; Save the hashes of data blocks in the bottom node
+Bottom Tier(omitted): called &lsquo;tx&rsquo; ——&gt; transaction</p>
+</blockquote>
+<p>Obviously, it is enough to save root hash if detecting tampering. And each block is divided into two sections: one is block header which saves root hash without any tx; the other is block body which saves tx.</p>
+<blockquote>
+</blockquote>
+<p>Node: Any computing machine in the block chain network, e.g. cellphone, mining machine, server&hellip;
+Full Node: block header &amp; block body saved
+Light Node(like wxapplet): block header saved only</p>
+<p>Question: How to prove any transaction logged into the block chain in terms of light nodes?</p>
+<p>Solution: The Merkle Tree can provide Merkle Proof.
+图示：{% asset_img WechatIMG607.png BitCoin-4 %}  <a href="https://www.bilibili.com/video/av37065233?p=3">截取自课程视频</a>
+Proof of Membership: theta(log(n)) complexity if proposing Num(n) tx in the entire tree.
+Proof of Non-Membership: theta(n)</p>
+<h2 id="bitcoin--concensus-protocol">BitCoin —— Concensus Protocol</h2>
+<p>Question: How does Central Bank issue digital currency?</p>
+<p>Solution One: Spending = Duplication; may cause &lsquo;double spending&rsquo;
+Solution Two: Create a list of recording each note&rsquo;s owner, e.g.</p>
+<blockquote>
+<p>017 ——&gt; Bob
+018 ——&gt; Tim
+019 ——&gt; Syria
+Then ceritfy the note before transactions; Valid, but centralized
+BitCoin is de-centralized, so the responsibility of verifying notes has transferred from the central bank to the mass.</p>
+</blockquote>
+<p>Two impending quetions about issuing digital currency:</p>
+<ol>
+<li>Who owns the legal right to issue?</li>
+<li>How to verify the validity of transaction to prevent from double spending?</li>
+</ol>
+<p>For Question One:</p>
+<blockquote>
+<p>Need to know how to make BitCoin transactions first
+Create a blcok chain: two types of hash pointer exist; One is to target at the connection between blocks. The other is to target at the source of each BitCoin.
+The entire transaction includes: Input ——&gt; to explain the source and the pub-key of payer; Output ——&gt; to explain the pub-key hash of recipients</p>
+</blockquote>
+<p>Some sub-questions:</p>
+<ol>
+<li>During the process of transaction, does the payer(A) need to know something about the recipient(B)?
+Answer: A needs to know B&rsquo;s address because this address is calculated based on B&rsquo;s pub-key.</li>
+<li>During the above process, does B need to know something about A?
+Answer: B needs to know A&rsquo;s pub-key, namely, A&rsquo;s identity. Each node needs to know A&rsquo;s pub-key in order to verify it.</li>
+<li>If B' disguises himself as A and claims to make transaction with A&rsquo;s pub-key, how to prevent this situation?
+Answer: The output of Coinbase tx saves the hash of the source.</li>
+</ol>
+<p>How to put the transaction info into the block chain?
+The content of ledger needs to achieve distributed consensus.</p>
+<blockquote>
+<p>But FLP impossibility result tolds:
+In an asynchronous system, there is no cap on the network transmition and even if at least one member reveals faulty, concensus is impossbile.</p>
+</blockquote>
+<p>Type of Potential attacks:</p>
+<ol>
+<li>Sybil attack: the minority nodes control multiple fake identities to attack other normal nodes in majority.
+Solution in BitCoin: Computing power voting</li>
+<li>Forking attack: Not in the longest valid chain
+Imagin that two blocks of the same length has been mined at the same time, which one is to be accepted?
+Solution in BitCoin: Keep watching for a while. If the one is first to be continued, the other is considered as &lsquo;orphan block&rsquo;.</li>
+</ol>
+<p>The reason why mining: For blcok reward only offered by coinbase tx and transaction fee</p>
+<h2 id="the-realization-of-bitcoin-system">The realization of BitCoin system</h2>
+<p>BitCoin vs Etheroem: Transaction-based ledger; Account-based ledger</p>
+<p>Question One:</p>
+<blockquote>
+<p>Supposing that the most computing power is controlled by honest nodes, is it possible to prove all transactions recorded in blocks valid?
+Answer: If node A transfers fee to fake node M
+The fake transaction will not be validified because M cannot falsify A&rsquo;s private key, which proves the transaction is unacceptable. Then the block becomes an orphan.</p>
+</blockquote>
+<p>Question Two:</p>
+<blockquote>
+<p>Supposing that a malicious node with ledgering right makes double spending attack, will the situation be?
+Answer: If the malicious node M makes M-to-A transaction, and at the same time makes M-to-M' transaction, this kind of forking attack forces other honest nodes to be connected with M-to-M' block and M-to-A block becomes an orphan. How to prevent from M&rsquo;s receiving goods without paying?
+Just waiting for several confirmations from following blocks. It is prescribed that at least six confirmations can prove the chain to be valid in BitCoin concept.</p>
+</blockquote>
+<p>From the above case, it can be concluded that the irrevocability of block chain is temporary, particularly in the initial phase of recording in the blocks, even if the entire chain is an irrevocable ledger.</p>
+<p>Question Three:</p>
+<blockquote>
+<p>Supposing that a malicious node with ledgering right resists recording valid transactions into the blocks.
+Answer: Never mind. Waiting for next block.
+In fact, BitCoin sets limits to each block&rsquo;s transaction num. The limit is not more than 1M. If the current block cannot record info, then wait for next.</p>
+</blockquote>
+<h3 id="selfish-mining">Selfish Mining</h3>
+<p>Selfish mining is a strategy for mining bitcoin in which groups of miners collude to increase their revenue. Bitcoin was invented to decentralize production and distribution of money. But selfish mining can result in centralization of bitcoin mining operations. <a href="https://www.investopedia.com/terms/s/selfish-mining.asp">参考自investopedia</a></p>
+<p>Threats from selfish mining:</p>
+<ol>
+<li>The safety of the entire network decreases. No longer need 51 per cent computing power to make attacks.</li>
+<li>Some miners with limited computing power find selfish mining a preferable strategy.</li>
+</ol>
+<h3 id="utxo">UTXO</h3>
+<h4 id="unspent-transaction-output">Unspent Transaction Output</h4>
+<p>{% asset_img UTXO.png UTXO %}</p>
+<p><a href="https://www.zhihu.com/question/59913301">参考知乎</a></p>
+<h2 id="bitcoin-network">BitCoin Network</h2>
+<p>Desiging principle: Simple, robust but no efficient</p>
+<blockquote>
+<p>Because each node needs to maintain a group of transactions waiting for being recorded into blocks.
+If listening a A-B transaction, record it;
+If listening a A-C double spending attack, deny it;
+If listening a same A-B transaction, delete it;
+If listening a same A-C transaction (the same source), delete it.</p>
+</blockquote>
+<h2 id="the-adjustment-of-mining-difficulty-in-bitcoin">The adjustment of mining difficulty in BitCoin</h2>
+<p>Difficulty = (difficulty - 1 - target) / target [difficulty=1]</p>
+<p>Question One:
+Why adjusting its difficulty? If the time for generating blocks is too short, what is its result?
+Forking attack is easy to make. Even multiple forks, makes it harder for the chain to achieve concensus.
+The speed for generating blocks is ten mins and that for ETH is fifteen secs, meaning it is necessary for ETH to have a new ghost. Because in the ghost, orphan block cannot be abandoned randomly, but given rewards.</p>
+<p>Question Two:
+How to adjust mining difficulty?
+Every 2016 blocks (about two weeks) as an interval to adjust the target threshold. The equation is:</p>
+<blockquote>
+<p>Target = target * (actual time/expected time)
+actual time refers to the real spent time for generating 2016 blocks in the chain;
+expected time refers to the expected spent time for generating 2016 blocks in the chain.</p>
+</blockquote>
+<p>Therefore, smaller the target is, more difficulty the mining will have.
+Relevant question: if the chain holds a malicious node, how to deal with it if not adjust target in the code?
+Answer: The honest miners will not accept it if not adjust the block publicized.</p>
+<h2 id="bitcoin-mining">BitCoin Mining</h2>
+<p>Proof of safety in BitCoin:</p>
+<ol>
+<li>Cryptography</li>
+<li>Consensus</li>
+</ol>
+<p>Equipment for mining:
+Generation one: CPU
+Generation two: GPU
+Generation Three: ASIC</p>
+<p>Mining Pool:
+Pool Manager (responsible for what full nodes require to do) ——&gt; Several Miners (calculate hash)</p>
+<p>How to distribute profits?
+Depending on POW. Supposing that the pre-70 zero of target nonce can meet the requirement, the manager can regulate that 1 share will be earned if first finding pre-60 zero of target nonce. Afterwards, profits will be distributed based on the num of share when BitCoin is ensured.</p>
+<p>Supposing that there is a pool of at least 51 per cent computing power, which kind of attack can it make?</p>
+<blockquote>
+<ol>
+<li>forking attack</li>
+</ol>
+</blockquote>
+<ol start="2">
+<li>boycott; If malicious node A wants the entire chain to boycott B&rsquo;s every relevant transaction, A will fork a block without B if A finds a block with B. More terribly, if A makes boycott in public, other &lsquo;weak&rsquo; miners dare not put B&rsquo;s transaction into blocks because it will be in vain if put it.</li>
+<li>Stealth; Impossible</li>
+</ol>
+<h2 id="bitcoin-script">BitCoin Script</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/25461051">参考自知乎巴比特</a>
+输入交易见图示：{% asset_img WechatIMG608.png BitCoin-5 %}
+输出交易见图示：{% asset_img WechatIMG609.png BitCoin-6 %}</p>
+<h3 id="stack">Stack</h3>
+<p>Core: Last in First Out
+In the ouput content, OP_DUP means duplicating the top element in the stack; OP_EQUALVERIFY means verifying whether two elements in the top of stack are equal.</p>
+<h3 id="transaction">Transaction</h3>
+<p>{% asset_img WechatIMG610.png BitCoin-7 %}</p>
+<h3 id="standard-transaction-script">Standard transaction script</h3>
+<p>P2PKH, Pay to Public Key Hash
+When Alice wants to transfer fees to Bob, input script shows Bob&rsquo;s address (equals pub-key hash);
+When Bob wants to transfer fees to Carol, output script shows Bob&rsquo;s pub-key and signiture signed by Bob&rsquo;s private-key because Bob wants to prove he owns his private-key of this address.</p>
+<p>Therefore, output script shows the recipient&rsquo;s pub-key hash; input script shows his sig &amp; pub-key.</p>
+<p>How to run input/output script?</p>
+<blockquote>
+<p>Input script is initialized. Owing to the rule of script that is run from left to right, sig is first put into the stack, and then is the pub-key.
+Then, output script is run from left to right. The first order is OP_DUP.
+Next, calculate OP_HASH160. That means calculating the top element hash, to get pub-key hash.
+Afterwards, put pub-key hash of output script into the stack. It should be distinguished with the previous hash.
+Run OP_EQUALVERIFY, to verify whether two hashes in the top of stack are equal. If equal, then to be continued; if not, kill and return false.
+Run OP_CHECKSIG, to use two elements (pub-key and sig left in the stack) in the top of stack as verifying whether sig is valid. If valid, return success; if not, return false.</p>
+</blockquote>
+<h3 id="proof-of-burn">Proof of burn</h3>
+<p>If any word of &lsquo;return&rsquo; is recorded in the output script, the result will return false whatever the input script is designed as. Then corresponding UTXO will be deleted.
+Function: &lsquo;burn&rsquo; a little BitCoin to charge for recording info in the block.</p>
+<h2 id="fork-in-bitcoin">Fork in BitCoin</h2>
+<p>Types:
+1.Protocol Fork
+2.Hark Fork
+3.Soft Fork</p>
+<h3 id="hard-fork">Hard Fork</h3>
+<p>Due to block size limit.
+The original limit is 1M. When upgrading, the limit will increase to 4M. But the upgrade could be finished in the most nodes with certain computing power. By calculating, it takes one sec to finish seven transactions. The speed for making transaction is low compared with other large-size payment network.
+The fork shows the disagreement among the old nodes and new olds which have been upgraded. Two distinctive groups do not accept the chain each other. So two paralleled chains have formed and will not disappear.</p>
+<h3 id="soft-fork">Soft Fork</h3>
+<p>During the upgrading process, small blocks will be discovered in the new nodes. However, old nodes insist mining bigger blocks and will stop later. The reason why old nodes stopping mining rests on their agreement on the other chain. So even if bigger blocks are discovered in the future, they will be abandoned (orphan nodes). The forks are shown in this process, but will disappear eventually.</p>
+<h3 id="possible-situation-when-soft-forks-will-be-confronted">Possible situation when soft forks will be confronted</h3>
+<ol>
+<li>Eight bytes in the domain of coinbase are used as extra nonce;</li>
+<li>If light nodes verify whether some transaction is recorded in the block, then one merkle proof for full node is ok;</li>
+<li>Full nodes maintain UTXO in local to know the remaining amount of some account;</li>
+<li>Light nodes cannot know the remaining amount of some account;</li>
+<li>Someone recommends that take hash(UTXO) into the domain of coinbase.</li>
+</ol>
+<h2 id="q--a-about-bitcoin">Q &amp; A about BitCoin</h2>
+<p>Q1: If the recipient is off-line during the transaction, what will be?</p>
+<blockquote>
+<p>A1: No need to keep online.</p>
+</blockquote>
+<p>Q2: What can I do if I lost my private-key?</p>
+<blockquote>
+<p>A2: Nothing if you have confidence in transaction institutions.</p>
+</blockquote>
+<p>Q3: What can I do if I revealed my private-key?</p>
+<blockquote>
+<p>A3: Transfer all to another account.</p>
+</blockquote>
+<p>Q4: What can I do if I record wrong address?</p>
+<blockquote>
+<p>A5: Nothing you can do to cancel your transaction. If transfer to no-place, you will have no returns.</p>
+</blockquote>
+<p>Q5: Since every transaction recorded into the blocks needs to be verified, why OP_RETURN in the proof of burn will be accepted?</p>
+<blockquote>
+<p>A6: For one transaction, we need to verify the input &amp; output script of current transaction. However, OP_RETURN is recorded into the output script of the current transaction. So it will not be verified.</p>
+</blockquote>
+<p>Q6: How to prevent from stealing by other miners?</p>
+<blockquote>
+<p>A6: In the coinbase tx, the address owned by the recipient has been recorded. If to steal, the address needs chaning. But once the address changed, merkle tree will be changed and correspondingly, root hash will be changed as well. Finally, block header will not be the same as the previous one. The nonce is invalid.</p>
+</blockquote>
+<p>Q7: How is transaction fee transferred to targeted miner?</p>
+<blockquote>
+<p>A7: No need to know before transferring.</p>
+</blockquote>
+<h2 id="the-anonymity-of-bitcoin">The Anonymity of BitCoin</h2>
+<p>Its anonymity reveals not as good as we expect.</p>
+<h3 id="several-possible-ways-to-nullify-its-anonymity">Several possible ways to nullify its anonymity</h3>
+<ol>
+<li>
+<p>Even if multiple inputs and ouputs have been generated in a single transaction, their relevant addresses are likely to be manually linked.</p>
+</li>
+<li>
+<p>The address/account may be linked with the identity in the real world. Any link can be made when BitCoin world makes contacts with the real world, and the identity is put in danger. To prevent from money laundering, it is necessary to keep close watch on the input/output chain of any asset. E.g. Silk Road</p>
+</li>
+</ol>
+<p>How to improve anonymity of BitCoin as possible as I can?</p>
+<blockquote>
+<p>In the application layer, coin mixing is preferable.
+In the network layer, multiple-route transmittion to stop from deducing real identity from IP address of any node.</p>
+</blockquote>
+<h3 id="proof-of-zero-knowledge">Proof of Zero-knowledge</h3>
+<p><a href="https://learnblockchain.cn/2019/04/18/learn-zkSNARK/">参考自blog</a></p>
+<h2 id="thoughts-on-bitcoin">Thoughts on BitCoin</h2>
+<ol>
+<li>Block Love</li>
+</ol>
+<blockquote>
+<p>Try not to truncate private-key, but use multiple sigs.</p>
+</blockquote>
+<ol start="2">
+<li>
+<p>BitCoin does not bypass those impossible results from distributed consensus because it fails to give reasonable explanations, such as forks.</p>
+</li>
+<li>
+<p>Scarcity of BitCoin</p>
+</li>
+<li>
+<p>Quantum Computing
+Q: Will quantum computing threaten BitCoin&rsquo;s development?</p>
+<ol>
+<li>Far away from applications;</li>
+<li>Make possible threat to traditional financial industry;</li>
+<li>Crypto and Hash differ. Nothing can reverse collision resistance of hash.</li>
+</ol>
+</li>
+</ol>
+]]></content>
+		</item>
+		
+		<item>
+			<title>集成学习（Ensemble Learning）</title>
+			<link>https://hitchcock717.github.io/posts/resemble_learning/</link>
+			<pubDate>Fri, 15 Nov 2019 17:38:56 +0000</pubDate>
+			
+			<guid>https://hitchcock717.github.io/posts/resemble_learning/</guid>
+			<description>参见Tommy Huang Blog 集成学习的概念 Ensemble Learning基本條件是:每個分類器之間應該要有差異，每個分類器準確率需大於0.5。 如果用的分類器沒有差</description>
+			<content type="html"><![CDATA[<p><a href="%5Bhttps://medium.com/@chih.sheng.huang821/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-ensemble-learning%E4%B9%8Bbagging-boosting%E5%92%8Cadaboost-af031229ebc3%5D(https://medium.com/@chih.sheng.huang821/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-ensemble-learning%E4%B9%8Bbagging-boosting%E5%92%8Cadaboost-af031229ebc3)">参见Tommy Huang Blog</a></p>
+<h2 id="集成学习的概念">集成学习的概念</h2>
+<p>Ensemble Learning基本條件是:每個分類器之間應該要有差異，每個分類器準確率需大於0.5。
+如果用的分類器沒有差異，那只是用很多個一樣的分類器來分類，結果合成起來是沒有差異的。如果分類器的精度p&lt;0.5，隨著ensemble規模的增加，分類準確率不斷下降；如果精度大於p&gt;0.5，那麼最終分類準確率可以趨向於1。</p>
+<h2 id="bagging">Bagging</h2>
+<p>随机取样/training set ——&gt;bootstrap——&gt;training subsets——&gt;weak classifier——&gt;majority vote</p>
+<blockquote>
+<p>bootstrap：從訓練資料中隨機抽取(取出後放回，n&lt;N)樣本訓練多個分類器(要多少個分類器自己設定)，每個分類器的權重一致最後用投票方式(Majority vote)得到最終結果</p>
+</blockquote>
+<p>Bagging的優點在於原始訓練樣本中有噪聲資料(不好的資料)，透過Bagging抽樣就有機會不讓有噪聲資料被訓練到，所以可以降低模型的不穩定性。</p>
+<h2 id="boosting">Boosting</h2>
+<blockquote>
+<p>將很多個弱的分類器(weak classifier)進行合成變成一個強分類器(Strong classifier)，和Bagging不同的是分類器之間是有關聯性的，是透過將舊分類器的錯誤資料權重提高，然後再訓練新的分類器，這樣新的分類器就會學習到錯誤分類資料(misclassified data)的特性，進而提升分類結果。</p>
+</blockquote>
+<p>對於Boosting來說，有兩個關鍵，一是在如何改變訓練資料的權重；二是如何將多個弱分類器組合成一個強分類器。而且存在一個重大的缺陷：該分類算法要求預先知道弱分類器識別準確率的下限。</p>
+<h2 id="adaboost">AdaBoost</h2>
+<blockquote>
+<p>是一種改進的Boosting分類算法。方式是提高被前幾個分類器線性組合的分類錯誤樣本的權重，這樣做可以讓每次訓練新的分類器的時後都聚焦在容易分類錯誤的訓練樣本上。每個弱分類器使用加權投票機制取代平均投票機制，只的準確率較大的弱分類器有較大的權重，反之，準確率低的弱分類器權重較低。</p>
+</blockquote>
+<p>##Bagging與Boosting的區別之處</p>
+<h4 id="訓練樣本"><strong>訓練樣本:</strong></h4>
+<p><strong>Bagging</strong>: 每一次的訓練集是隨機抽取(每個樣本權重一致)，抽出可放回，以獨立同分布選取的訓練樣本子集訓練弱分類器。</p>
+<p><strong>Boosting</strong>: 每一次的訓練集不變，訓練集之間的選擇不是獨立的，每一是選擇的訓練集都是依賴上一次學習得結果，根據錯誤率(給予訓練樣本不同的權重)取樣。</p>
+<h4 id="分類器"><strong>分類器:</strong></h4>
+<p><strong>Bagging</strong>: 每個分類器的權重相等。</p>
+<p><strong>Boosting</strong>: 每個弱分類器都有相應的權重，對於分類誤差小的分類器會有更大的權重。</p>
+<h4 id="每個分類器的取得"><strong>每個分類器的取得:</strong></h4>
+<p><strong>Bagging</strong>: 每個分類器可以並行生成。</p>
+<p><strong>Boosting</strong>: 每個弱分類器只能依賴上一次的分類器順序生成。（串行）</p>
+<h2 id="随机森林">随机森林</h2>
+<p><strong>下面是随机森林的构造过程：</strong></p>
+<blockquote>
+<p>​      1.假如有N个样本，则有放回的随机选择N个样本(每次随机选择一个样本，然后返回继续选择)。这选择好了的N个样本用来训练一个决策树，作为决策树根节点处的样本。</p>
+<p>　　2. 当每个样本有M个属性时，在决策树的每个节点需要分裂时，随机从这M个属性中选取出m个属性，满足条件m &laquo; M。然后从这m个属性中采用某种策略（比如说信息增益）来选择1个属性作为该节点的分裂属性。</p>
+<p>　　3. 决策树形成过程中每个节点都要按照步骤2来分裂（很容易理解，如果下一次该节点选出来的那一个属性是刚刚其父节点分裂时用过的属性，则该节点已经达到了叶子节点，无须继续分裂了）。一直到不能够再分裂为止。注意整个决策树形成过程中没有进行剪枝。</p>
+<p>　　4. 按照步骤1~3建立大量的决策树，这样就构成了随机森林了。</p>
+</blockquote>
+]]></content>
+		</item>
+		
+		<item>
+			<title>HTML之DOM节点树</title>
+			<link>https://hitchcock717.github.io/posts/html_dom-learning/</link>
+			<pubDate>Fri, 15 Nov 2019 17:33:56 +0000</pubDate>
+			
+			<guid>https://hitchcock717.github.io/posts/html_dom-learning/</guid>
+			<description>具体参见菜鸟教程 DOM概念 DOM (Document Object Model) 译为文档对象模型，是 HTML 和 XML 文档的编程接口。 HTML DOM 定义了访问和操作 HTML 文档的标准方法。 DOM 以树结构表达 HTML 文档。 ##</description>
+			<content type="html"><![CDATA[<p>具体参见<a href="https://www.runoob.com/htmldom/htmldom-tutorial.html">菜鸟教程</a></p>
+<h2 id="dom概念">DOM概念</h2>
+<blockquote>
+<p>DOM (Document Object Model) 译为<strong>文档对象模型</strong>，是 HTML 和 XML 文档的编程接口。</p>
+<p>HTML DOM 定义了访问和操作 HTML 文档的标准方法。</p>
+<p>DOM 以树结构表达 HTML 文档。</p>
+</blockquote>
+<p>###<em>树形结构</em></p>
+<p>Document:</p>
+<p>​			Root Document :<!-- raw HTML omitted --></p>
+<p>​						Element:<!-- raw HTML omitted --></p>
+<p>​									Element:<!-- raw HTML omitted --></p>
+<p>​												Text:&ldquo;My title&rdquo;</p>
+<p>​						Element:<!-- raw HTML omitted --></p>
+<p>​										Attribute:&ldquo;href&rdquo;</p>
+<p>​										Element:<!-- raw HTML omitted --></p>
+<p>​													Text:&ldquo;My link&rdquo;</p>
+<p>​										Element:<!-- raw HTML omitted --></p>
+<p>​													 Text:&ldquo;My header&rdquo;</p>
+<h3 id="dom-nodes"><em>DOM Nodes</em></h3>
+<pre><code>&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;DOM 教程&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;DOM 课程1&lt;/h1&gt;
+    &lt;p&gt;Hello world!&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>从上面的 HTML 中：</p>
+<ul>
+<li>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+<li>文本节点 &ldquo;Hello world!&rdquo; 的父节点是 <!-- raw HTML omitted --> 节点</li>
+</ul>
+<p>并且：</p>
+<ul>
+<li>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+</ul>
+<p>并且：</p>
+<ul>
+<li>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+</ul>
+<h3 id="html-dom-方法"><em>HTML DOM 方法</em></h3>
+<p>getElementById() 方法返回带有指定 ID 的元素：</p>
+<pre><code>var element=document.getElementById(&quot;intro&quot;);
+</code></pre><p>一些常用的 HTML DOM 方法：</p>
+<ul>
+<li>getElementById(id) - 获取带有指定 id 的节点（元素）</li>
+<li>appendChild(node) - 插入新的子节点（元素）</li>
+<li>removeChild(node) - 删除子节点（元素）</li>
+</ul>
+<p>一些常用的 HTML DOM 属性：</p>
+<ul>
+<li>innerHTML - 节点（元素）的文本值</li>
+<li>parentNode - 节点（元素）的父节点</li>
+<li>childNodes - 节点（元素）的子节点</li>
+<li>attributes - 节点（元素）的属性节点</li>
+</ul>
+]]></content>
+		</item>
+		
+		<item>
+			<title>回归（Regression）与 分类（Categorization）</title>
+			<link>https://hitchcock717.github.io/posts/regressioncategorization/</link>
+			<pubDate>Fri, 15 Nov 2019 17:31:56 +0000</pubDate>
+			
+			<guid>https://hitchcock717.github.io/posts/regressioncategorization/</guid>
+			<description>分类与回归的区别 | 特性 | 分类（监督学习） | 回归 | | 输出类型 | 离散数据 | 连续数据 | | 目的 | 寻找决策边界 | 找到最优拟合 | | 评价方法 | 精度、混淆矩</description>
+			<content type="html"><![CDATA[<h2 id="分类与回归的区别">分类与回归的区别</h2>
+<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">|   特性   | 分类（监督学习） |           回归            |
+| 输出类型  |    离散数据    |          连续数据          |
+|   目的 	 |   寻找决策边界  |         找到最优拟合        |
+| 评价方法  | 精度、混淆矩阵  | SSE(平方误差总和)、拟合优度   |
+</code></pre></div><p><a href="https://www.zhihu.com/people/dataju">转自知乎赵熙</a></p>
+<p><strong>分类模型和回归模型本质一样，分类模型可将回归模型的输出离散化（下面例子1. 2. 4. 5.），回归模型也可将分类模型的输出连续化（下面例子3.）</strong></p>
+<p>举几个例子:</p>
+<ol>
+<li>
+<p>Logistic Regression 和 Linear Regression：</p>
+</li>
+<li>
+<ol>
+<li><strong>Linear Regression</strong>： 输出一个标量 wx+b，这个值是连续值，所以可以用来处理<strong>回归</strong>问题</li>
+<li><strong>Logistic Regression</strong>：把上面的 wx+b 通过 sigmoid 函数映射到(0,1)上，并划分一个阈值，大于阈值的分为一类，小于等于分为另一类，可以用来处理<strong>二分类</strong>问题</li>
+<li>更进一步：对于N分类问题，则是先得到N组w值不同的 wx+b，然后归一化，比如用 softmax 函数，最后变成N个类上的概率，可以处理<strong>多分类</strong>问题</li>
+</ol>
+</li>
+<li>
+<p>Support Vector Regression 和 Support Vector Machine:</p>
+</li>
+<li>
+<ol>
+<li><strong>SVR</strong>：输出 wx+b，即某个样本点到分类面的距离，是连续值，所以是<strong>回归</strong>模型</li>
+<li><strong>SVM</strong>：把这个距离用 sign(·) 函数作用，距离为正(在超平面一侧)的样本点是一类，为负的是另一类，所以是<strong>分类</strong>模型</li>
+</ol>
+</li>
+<li>
+<p><strong>Naive Bayes</strong> 用于分类 和 回归:</p>
+</li>
+<li>
+<ol>
+<li>用于分类：y是离散的类别，所以得到离散的 p(y|x)，给定 x ，输出每个类上的概率</li>
+<li>用于回归：对上面离散的 p(y|x)求期望 ΣyP(y|x)，就得到连续值。但因为此时y本身是连续的值，所以最地道的做法是，得到连续的概率密度函数p(y|x)，然后再对y求期望。参考 <a href="https://link.zhihu.com/?target=http%3A//www.cs.waikato.ac.nz/~eibe/pubs/nbr.pdf">http://www.cs.waikato.ac.nz/~eibe/pubs/nbr.pdf</a></li>
+</ol>
+</li>
+<li>
+<p><strong>前馈神经网络(如 CNN 系列)</strong> 用于 分类 和 回归:</p>
+</li>
+<li>
+<ol>
+<li>用于回归：最后一层有m个神经元，每个神经元输出一个标量，m个神经元的输出可以看做向量 v，现全部连到一个神经元上，则这个神经元输出 wv+b，是一个连续值，可以处理回归问题，跟上面 Linear Regression 思想一样</li>
+<li>用于N分类：现在这m个神经元最后连接到 N 个神经元，就有 N 组w值不同的 wv+b，同理可以归一化（比如用 softmax ）变成 N个类上的概率（补充一下，如果不用 softmax，而是每个 wx+b 用一个 sigmoid，就变成<strong>多标签</strong>问题，跟多分类的区别在于，样本可以被打上多个标签）</li>
+</ol>
+</li>
+<li>
+<p><strong>循环神经网络(如 RNN 系列)</strong> 用于分类 和 回归：</p>
+</li>
+<li>
+<ol>
+<li>用于回归 和 分类： 跟 CNN 类似，输出层的值 y = wv+b，可做分类可做回归，只不过区别在于，RNN 的输出跟时间有关，即输出的是 {y(t), y(t+1),&hellip;}序列（关于时间序列，见下面的更新）</li>
+</ol>
+</li>
+</ol>
+<p>上面的例子其实都是从 prediction 的角度举例的，如果从 training 角度来看，分类模型和回归模型的目标函数不同，分类常见的是 log loss, hinge loss, 而回归是 square loss（关于 loss function，又是另一个story了，在此不展开了）</p>
+<p>==== 进一步思考后的<strong>重要更新，谈谈时间序列模型</strong> ========</p>
+<p>上面的例子 1~4 解决的是常见的分类/回归问题，而例5 解决的是 时间序列问题。</p>
+<ol>
+<li>
+<p>上面例1~4 的模型只适用于：这些样本的 y，没有时间上的相关性，比如：</p>
+</li>
+<li>
+<ol>
+<li>人脸识别（分类问题），输入 x 是人脸的图像矩阵，识别目标 y 是人的ID，离散值，显然人与人的ID没有时间上的关系</li>
+<li>人脸年龄预测（回归问题），输入 x 还是人脸图像矩阵，识别目标 y 是人的年龄，连续值，显然人与人之间的年龄亦没有时间上的关系</li>
+</ol>
+</li>
+<li>
+<p>而当这些样本的 y 在时间上有相关性时，就变成了 时间序列问题，如果我们依然用非时间序列的方法来处理，就割裂了y的时间相关性，所以常见手段是用例5提到的RNN，（当然，还有 HMM, CRF 这些）但注意别用统计学里面那些愚蠢的 AR 模型（参考我的回答 <a href="https://www.zhihu.com/question/31833683/answer/152064596">时间序列建模问题，如何准确的建立时间序列模型？ - 知乎用户的回答 - 知乎</a>）。应用场景：</p>
+</li>
+<li>
+<ol>
+<li>NLP 里的命名体识别（分类问题），输入是一句话，可以看做是由单词组成的时间序列（准确说是: 事件序列），输出是每个单词所属的标签</li>
+<li>气温预测（回归问题），输入是历史时间的气温记录，输出是未来1天或多天的气温</li>
+</ol>
+</li>
+</ol>
+<p>总结一下，我认为，机器学习模型(有监督)本质是：</p>
+<blockquote>
+<p>对一系列样本 <img src="https://www.zhihu.com/equation?tex=%28x%2Cy%29" alt="(x,y)"> 构建 <img src="https://www.zhihu.com/equation?tex=f%28x%29%5Crightarrow+y" alt="f(x)\rightarrow y"> 的映射</p>
+</blockquote>
+<p>所以，对于时间序列问题，其实是构建一个 <img src="https://www.zhihu.com/equation?tex=f%28x_t%2Cx_%7Bt%2B1%7D%2C...%2Cx_%7Bt%2Bdt%7D%29%5Crightarrow+y_%7Bt%2B1%7D%2C...%2Cy_%7Bt%2Bdt%2B1%7D" alt="f(x_t,x_{t+1},&hellip;,x_{t+dt})\rightarrow y_{t+1},&hellip;,y_{t+dt+1}"> 的映射关系</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>爬虫之Fiddler-Mono代理工具</title>
+			<link>https://hitchcock717.github.io/posts/fiddler-mono-mac/</link>
+			<pubDate>Wed, 22 May 2019 23:12:35 +0000</pubDate>
+			
+			<guid>https://hitchcock717.github.io/posts/fiddler-mono-mac/</guid>
+			<description>近期做知网爬虫项目的一些工具准备 具体参见Cyrus Ren blog Fiddler介绍 http调试代理工具，以代理服务器的方式监听系统的http网络数据流</description>
+			<content type="html"><![CDATA[<p>近期做知网爬虫项目的一些工具准备 具体参见<a href="https://cyrusrenty.github.io//2018/12/19/cnkispider-1/">Cyrus Ren blog</a></p>
+<h2 id="fiddler介绍">Fiddler介绍</h2>
+<blockquote>
+<p>http调试代理工具，以代理服务器的方式监听系统的http网络数据流动</p>
+</blockquote>
+<p>*mac下需要使用.Net编译后的程序，无法直接安装fiddler，故使用Mono Framework</p>
+<h2 id="mono-framework介绍">Mono Framework介绍</h2>
+<blockquote>
+<p><strong>Mono</strong>是一个由<a href="https://zh.wikipedia.org/wiki/Xamarin">Xamarin</a>公司（先前是<a href="https://zh.wikipedia.org/wiki/Novell">Novell</a>，最早为<a href="https://zh.wikipedia.org/wiki/Ximian">Ximian</a>）所主持的自由开放源码项目。该项目的目标是创建一系列匹配<a href="https://zh.wikipedia.org/wiki/Ecma%E5%9B%BD%E9%99%85">ECMA</a>标准（<a href="http://www.ecma-international.org/publications/standards/Ecma-334.htm">Ecma-334</a>和<a href="http://www.ecma-international.org/publications/standards/Ecma-335.htm">Ecma-335</a>）的<a href="https://zh.wikipedia.org/wiki/.NET">.NET</a>工具，包括<a href="https://zh.wikipedia.org/wiki/C_Sharp">C#</a>编译器和<a href="https://zh.wikipedia.org/wiki/%E9%80%9A%E7%94%A8%E8%AF%AD%E8%A8%80%E6%9E%B6%E6%9E%84">通用语言架构</a>。与微软的<a href="https://zh.wikipedia.org/wiki/.NET_Framework">.NET Framework</a>（<a href="https://zh.wikipedia.org/wiki/Common_Language_Runtime">共通语言运行平台</a>）不同，Mono项目不仅可以运行于<a href="https://zh.wikipedia.org/wiki/Windows">Windows</a>系统上，还可以运行于<a href="https://zh.wikipedia.org/wiki/Linux">Linux</a>，<a href="https://zh.wikipedia.org/wiki/FreeBSD">FreeBSD</a>，<a href="https://zh.wikipedia.org/wiki/Unix">Unix</a>，<a href="https://zh.wikipedia.org/wiki/OS_X">OS X</a>和<a href="https://zh.wikipedia.org/wiki/Solaris">Solaris</a>，甚至一些游戏平台，例如：Playstation 3，Wii或XBox 360。(来自维基百科）</p>
+</blockquote>
+<h2 id="mac下安装-参见简书陈康stozenhttpswwwjianshucomp57ec761cb5a3">Mac下安装 参见<a href="https://www.jianshu.com/p/57ec761cb5a3">简书陈康stozen</a></h2>
+<p><strong>1.Mono</strong></p>
+<blockquote>
+<p>下载并安装：<a href="http://www.mono-project.com/download/#download-mac">http://www.mono-project.com/download/#download-mac</a></p>
+</blockquote>
+<p><em>从Mozilla LXR上下载所有受信任的root证书，存于Mono的证书库里。root证书能用于请求SSL地址。</em></p>
+<pre><code>/Library/Frameworks/Mono.framework/Versions/&lt;mono version&gt;/bin/mozroots --import --sync
+</code></pre><p><strong>2.修改配置文件</strong></p>
+<p>如果想要运行Fiddler，还需要把Mono加入到环境变量中。编辑.bash_profile文件：</p>
+<pre><code>sudo vi ~/.bash_profile
+</code></pre><p>添加下方文本：[注意查看本机下mono版本号]</p>
+<pre><code>export MONO_HOME=/Library/Frameworks/Mono.framework/Versions/5.0.1
+export PATH=$PATH:$MONO_HOME/bin
+</code></pre><p>存后重新打开Terminal，Mono环境已装好。</p>
+<p><strong>3.Fiddler</strong></p>
+<p>从Fiddler官网<a href="https://link.jianshu.com/?t=https://www.telerik.com/download/fiddler">https://www.telerik.com/download/fiddler</a>下载<strong>fiddler-mac.zip</strong>的压缩包。解压到非中文字符的路径下。</p>
+<p>运行：</p>
+<pre><code>sudo mono Fiddler.exe
+</code></pre><p>mono版本不支持，则运行：</p>
+<pre><code> sudo mono --arch=32 Fiddler.exe
+</code></pre><p>界面显示：</p>
+<p><strong>更多关于mac下使用fiddler 请见<a href="https://imququ.com/post/use-fiddler-on-macos.html">Jerry Qu blog</a></strong></p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>陈嘉映的哲学之道</title>
+			<link>https://hitchcock717.github.io/posts/cjy-philosophy/</link>
+			<pubDate>Wed, 22 May 2019 23:05:59 +0000</pubDate>
+			
+			<guid>https://hitchcock717.github.io/posts/cjy-philosophy/</guid>
+			<description>科学通过它所提供的世界图景改变我们对世界的认识。 chapter one 理性与哲学 1.感应思维——对事物的理解方式 2.凡不用因果机制来解释事物的发生，都称之为迷</description>
+			<content type="html"><![CDATA[<h3 id="科学通过它所提供的世界图景改变我们对世界的认识">科学通过它所提供的世界图景改变我们对世界的认识。</h3>
+<h5 id="chapter-one--理性与哲学">chapter one  理性与哲学</h5>
+<p>1.感应思维——对事物的理解方式
+2.凡不用因果机制来解释事物的发生，都称之为迷信
+3.<img src="evernotecid://04034164-3DEF-4658-9AC6-B96748855867/appyinxiangcom/8064050/ENResource/p65" alt="2b49493c7fc2a027bc6641fc9e781fde.png">
+4.相互感应的事物有某种相像之处
+eg. 人参有人形，滋补益寿/苋菜红色——血，补血功能/毛地黄的花形似心脏，使心脏兴奋
+5.泠风则小和 飘风则大和 厉风济则众窍为虚 ——庄子《齐物论》*感应与共鸣</p>
+<p>6.神话开始了对世界的统一解释
+往古来今谓之宙，四方上下谓之宇——《淮南子 齐俗训》
+7.文字的出现，渐渐形成理性的态度
+8.理性态度的第一个特征是 反思
+9.理论兴趣并不是理性态度的自发产物
+10.凡是概括的东西都带有理论的意味
+11.理论另一个含义是对世界的整体解释
+12.将现实与现实背后的隐秘结构区分开来，是理论态度最基本的特征
+13.希腊进入理知时期的一个特点是 诗哲之争</p>
+<h4 id="从希腊天学到哥白尼革命">从希腊天学到哥白尼革命</h4>
+<p>1.在中国古代，法律的生命与其说在于行政，不如说是在于道德
+2.哲学-科学思想最根本的特质：不事先认定真理而让真理作为自由思考的结论出现
+3.天文学是第一门成熟的科学</p>
+<h4 id="近代科学的兴起">近代科学的兴起</h4>
+<p>1.从17世纪开始，科学就开始“将原来以基督教为中心的文化变革成为现在这样以科学为中心的文化“。</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>前端之React语法</title>
+			<link>https://hitchcock717.github.io/posts/react-review/</link>
+			<pubDate>Wed, 22 May 2019 23:05:27 +0000</pubDate>
+			
+			<guid>https://hitchcock717.github.io/posts/react-review/</guid>
+			<description>具体参见菜鸟教程 腾讯云开发者平台+node.js环境+create-react-app脚手架 安装脚手架指令：sudo yarn global add create-react-app 关于yarn package dependence</description>
+			<content type="html"><![CDATA[<p><a href="https://www.runoob.com/react/react-install.html">具体参见菜鸟教程</a></p>
+<h4 id="腾讯云开发者平台nodejs环境create-react-app脚手架">腾讯云开发者平台+node.js环境+create-react-app脚手架</h4>
+<pre><code>安装脚手架指令：sudo yarn global add create-react-app
+</code></pre><p>关于yarn</p>
+<blockquote>
+<p>package dependence -从 npm 注册源获取模块的新的 CLI【command-line-interface】 客户端</p>
+</blockquote>
+<pre><code>创建app指令：create-react-app app
+</code></pre><pre><code>创建访问链接 cd app / yarn start ——&gt; localhost+:本地端口3000
+</code></pre><hr>
+<p>###<em>React元素渲染</em></p>
+<p><strong>将元素渲染进DOM(Document Object Model)文档对象模型</strong></p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot; /&gt;
+&lt;title&gt;Hello React!&lt;/title&gt;
+&lt;script src=&quot;https://cdn.staticfile.org/react/16.4.0/umd/react.development.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;     #首先定义根结点
+&lt;script type=&quot;text/babel&quot;&gt;   #react第二代jsx语法解析编译器--babel
+const element =&lt;h1&gt;Hello, world!&lt;/h1&gt;;  #const表示常量，常量值不能通过重新赋值改变，不能重新声明 / 语法：const name1 = value1[, name2=value2 [, ..[, nameN=valueN]]]; / 此处标明元素是&quot;Hello,world!&quot;一级标题
+ReactDOM.render( 						  #render()渲染方法，对一级标题渲染
+    element,									#对应const中的元素 / 此处element可替换为&lt;h1&gt;Hello, world!&lt;/h1&gt;
+    document.getElementById('example') #返回匹配特定id的元素
+);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><strong>更新元素渲染</strong></p>
+<pre><code>&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;   
+&lt;script type=&quot;text/babel&quot;&gt;
+function tick() {
+  const element = (
+    &lt;div&gt;
+      &lt;h1&gt;Hello, world!&lt;/h1&gt;      #react中元素不可变
+      &lt;h2&gt;现在是 {new Date().toLocaleTimeString()}.&lt;/h2&gt;     #更新界面的唯一方法--创建新元素/ 此处创建计时器
+    &lt;/div&gt;
+  );
+  ReactDOM.render(
+    element,
+    document.getElementById('example')
+  );
+}
+ 
+setInterval(tick, 1000);    #setInterval()方法，每秒调用一次render()方法
+</code></pre><p><strong>封装function tick( )</strong></p>
+<pre><code>等效方法一、
+&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/babel&quot;&gt;
+function Clock(props) {        #接受任意入参（props）
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Hello, world!&lt;/h1&gt;
+      &lt;h2&gt;现在是 {props.date.toLocaleTimeString()}.&lt;/h2&gt;
+    &lt;/div&gt;
+  );
+}
+
+function tick() {
+  ReactDOM.render(
+    &lt;Clock date={new Date()} /&gt;,
+    document.getElementById('example')
+  );
+}
+
+setInterval(tick, 1000);
+
+==================================================
+等效方法二、
+&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/babel&quot;&gt;
+class Clock extends React.Component {    #使用ES6类
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;h1&gt;Hello, world!&lt;/h1&gt;
+        &lt;h2&gt;现在是 {this.props.date.toLocaleTimeString()}.&lt;/h2&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+function tick() {
+  ReactDOM.render(
+    &lt;Clock date={new Date()} /&gt;,
+    document.getElementById('example')
+  );
+}
+
+setInterval(tick, 1000);
+</code></pre><h6 id="-关于函数组件-参见react官方文档httpsreactdocschinaorgdocscomponents-and-propshtml">&gt; 关于函数组件 参见<a href="https://react.docschina.org/docs/components-and-props.html">react官方文档</a></h6>
+<blockquote>
+<p>如下可称为<strong>函数组件</strong></p>
+<pre><code>function Welcome(props) {
+ return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+</code></pre><p>或</p>
+<pre><code>class Welcome extends React.Component {
+ render() {
+   return &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;;
+ }
+}
+</code></pre><p><em>渲染组件</em></p>
+<p>React元素不仅包括DOM标签，还有用户自定义组件</p>
+<pre><code>function Welcome(props) {
+ return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+
+const element = &lt;Welcome name=&quot;Sara&quot; /&gt;; #自定义Welcome name元素，注意与方法名一致【大写】
+ReactDOM.render(
+ element,
+ document.getElementById('root')
+);
+</code></pre><p>让我们来回顾一下这个例子中发生了什么：</p>
+<ol>
+<li>我们调用 <code>ReactDOM.render()</code> 函数，并传入 <code>&lt;Welcome name=&quot;Sara&quot; /&gt;</code> 作为参数。</li>
+<li>React 调用 <code>Welcome</code> 组件，并将 <code>{name: 'Sara'}</code> 作为 props 传入。</li>
+<li><code>Welcome</code> 组件将 <code>&lt;h1&gt;Hello, Sara&lt;/h1&gt;</code> 元素作为返回值。</li>
+<li>React DOM 将 DOM 高效地更新为 <code>&lt;h1&gt;Hello, Sara&lt;/h1&gt;</code>。</li>
+</ol>
+</blockquote>
+<p>​		<em>复合组件</em></p>
+<pre><code>function Name(props) {
+    return &lt;h1&gt;网站名称：{props.name}&lt;/h1&gt;;
+}
+function Url(props) {
+    return &lt;h1&gt;网站地址：{props.url}&lt;/h1&gt;;
+}
+function Nickname(props) {
+    return &lt;h1&gt;网站小名：{props.nickname}&lt;/h1&gt;;
+}
+function App() {
+    return (
+    &lt;div&gt;
+        &lt;Name name=&quot;菜鸟教程&quot; /&gt;
+        &lt;Url url=&quot;http://www.runoob.com&quot; /&gt;
+        &lt;Nickname nickname=&quot;Runoob&quot; /&gt;
+    &lt;/div&gt;
+    );
+}
+ 
+ReactDOM.render(
+     &lt;App /&gt;,       #渲染整个组件
+    document.getElementById('example')
+);
+</code></pre><p>###<em>React JSX</em></p>
+<blockquote>
+<p>元素是构成 React 应用的最小单位，JSX 就是用来声明 React 当中的元素</p>
+</blockquote>
+<p><strong>不能使用if else语句</strong>——&gt;<strong>三元运算</strong></p>
+<pre><code>&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+    &lt;script type=&quot;text/babel&quot;&gt;
+	  var i = 1;
+      ReactDOM.render(
+      	&lt;div&gt;
+      	  &lt;h1&gt;{i == 1 ? 'True!' : 'False'}&lt;/h1&gt; #相当于 if i == 1, return true; else: return false;
+        &lt;/div&gt;
+      	,
+      	document.getElementById('example')
+      );
+</code></pre><p>######&gt;关于三元运算</p>
+<blockquote>
+<p>语法：condition？expr1 ： expr2</p>
+</blockquote>
+<p><strong>内联样式</strong></p>
+<pre><code>var myStyle = {
+    fontSize: 100,
+    color: '#FF0000'
+};
+ReactDOM.render(
+    &lt;h1 style = {myStyle}&gt;菜鸟教程&lt;/h1&gt;,
+    document.getElementById('example')
+);
+</code></pre><p><strong>注释</strong> {/*      */}</p>
+<pre><code>ReactDOM.render(
+    &lt;div&gt;
+    &lt;h1&gt;菜鸟教程&lt;/h1&gt;
+    {/*注释...*/}
+     &lt;/div&gt;,
+    document.getElementById('example')
+);
+</code></pre><p>###<em>React State</em>  参见<a href="%5Bhttp://huziketang.mangojuice.top/books/react/lesson10%5D(http://huziketang.mangojuice.top/books/react/lesson10)">胡子大哈blog</a></p>
+<p>最直观的理解</p>
+<p><img src="https://huzidaha.github.io/static/assets/img/posts/B7575C67-64F8-4A13-9C63-4D6805FA360D.png" alt="image_state"></p>
+<p>以点赞按钮为例</p>
+<pre><code>import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+
+class LikeButton extends Component {
+  constructor () {      
+    super()
+    this.state = { isLiked: false }  #this指向likebutton类
+  }
+
+  handleClickOnLikeButton () {
+    this.setState({
+      isLiked: !this.state.isLiked
+    })
+  }
+
+  render () {
+    return (
+      &lt;button onClick={this.handleClickOnLikeButton.bind(this)}&gt;
+        {this.state.isLiked ? '取消' : '点赞'} 👍
+      &lt;/button&gt;
+    )
+  }
+}
+</code></pre><p>######&gt;关于constructor与super的作用    参见<a href="https://juejin.im/post/5b4c0b26f265da0f6c7a82a1">掘金戴宏兵的文章</a></p>
+<p><code>constructor</code> 方法是类的构造函数，是一个默认方法</p>
+<p><code>super</code> 这个关键字，既可以当做函数使用，也可以当做对象使用。这两种情况下，它的用法完全不用</p>
+<p>​	当做函数使用</p>
+<blockquote>
+<p><strong>class</strong> <strong>A</strong> {}
+<strong>class</strong> <strong>B</strong> <strong>extends</strong> <strong>A</strong> {
+<strong>constructor</strong>() {
+<strong>super</strong>();  // ES6 要求，子类的构造函数必须执行一次 super 函数，否则会报错。
+}
+}</p>
+<p>注：在 <code>constructor</code> 中必须调用 <code>super</code> 方法，因为子类没有自己的 <code>this</code> 对象，而是继承父类的 <code>this</code> 对象，然后对其进行加工,而 <code>super</code> 就代表了父类的构造函数。<code>super</code> 虽然代表了父类 A 的构造函数，但是返回的是子类 B 的实例，即 <code>super</code> 内部的 <code>this</code> 指的是 B，因此 <code>super()</code> 在这里相当于 ```A.prototype.constructor.call(this, props)``。</p>
+</blockquote>
+<p>​	当做对象使用</p>
+<p><strong>在普通方法中，指向父类的原型对象；在静态方法中，指向父类</strong></p>
+<blockquote>
+<p>class A {
+c() {
+return 2;
+}
+}</p>
+<p>class B extends A {
+constructor() {
+super();
+console.log(super.c()); // 2
+}
+}</p>
+<p>let b = new B();</p>
+<p>注：上面代码中，子类 B 当中的 <code>super.c()</code>，就是将 <code>super</code> 当作一个对象使用。这时，<code>super</code> 在普通方法之中，指向 <code>A.prototype</code>，所以 <code>super.c()</code> 就相当于 <code>A.prototype.c()</code>。</p>
+</blockquote>
+<p><strong>通过 super 调用父类的方法时，super 会绑定子类的 this</strong></p>
+<pre><code>class A {
+  constructor {
+    this.x = 1;
+  }
+  s() {
+    console.log(this.x);
+  }
+}
+
+class B extends A {
+  constructor {
+    super();
+    this.x = 2;
+  }
+  m() {
+    super.s();
+  }
+}
+
+let b = new B();
+b.m(); // 2
+
+#上面代码中，super.s() 虽然调用的是 A.prototytpe.s()，但是 A.prototytpe.s()会绑定子类 B 的 this，导致输出的是 2，而不是 1。也就是说，实际上执行的是 super.s.call(this)。
+</code></pre><p>######&gt;继续state点赞👍案例</p>
+<p><code>isLiked</code> 存放在实例的 <code>state</code> 对象当中，这个对象在构造函数里面初始化。这个组件的 <code>render</code> 函数内，会根据组件的 <code>state</code> 的中的<code>isLiked</code>不同显示“取消”或“点赞”内容。并且给 <code>button</code> 加上了点击的事件监听。</p>
+<p>最后构建一个 <code>Index</code> ，在它的 <code>render</code> 函数内使用 <code>LikeButton</code> 。然后把 <code>Index</code>渲染到页面上：</p>
+<pre><code>class Index extends Component {
+  render () {
+    return (
+      &lt;div&gt;
+        &lt;LikeButton /&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+ReactDOM.render(
+  &lt;Index /&gt;,
+  document.getElementById('root')
+)
+</code></pre><h3 id="react-props"><em>React Props</em></h3>
+<blockquote>
+<p>state根据交互可变，用来更新和修改数据/props不可变，用来传递数据</p>
+</blockquote>
+<pre><code>&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/babel&quot;&gt;
+function HelloMessage(props) {
+	return &lt;h1&gt;Hello {props.name}!&lt;/h1&gt;;
+}
+
+const element = &lt;HelloMessage name=&quot;Runoob&quot;/&gt;; #自定义组件
+
+ReactDOM.render(
+	element,
+	document.getElementById('example')
+);
+</code></pre><p><strong>state与props组合使用</strong></p>
+<blockquote>
+<p>在父组件中设置 state， 并通过在子组件上使用 props 将其传递到子组件上。在 render 函数中, 我们设置 name 和 site 来获取父组件传递过来的数据。</p>
+</blockquote>
+<pre><code>class WebSite extends React.Component {
+  constructor() {
+      super();
+ 
+      this.state = {
+        name: &quot;菜鸟教程&quot;,
+        site: &quot;https://www.runoob.com&quot;
+      }
+    }
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;Name name={this.state.name} /&gt;
+        &lt;Link site={this.state.site} /&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+ 
+ 
+ 
+class Name extends React.Component {
+  render() {
+    return (
+      &lt;h1&gt;{this.props.name}&lt;/h1&gt;
+    );
+  }
+}
+ 
+class Link extends React.Component {
+  render() {
+    return (
+      &lt;a href={this.props.site}&gt;
+        {this.props.site}
+      &lt;/a&gt;
+    );
+  }
+}
+ 
+ReactDOM.render(
+  &lt;WebSite /&gt;,
+  document.getElementById('example')
+);
+</code></pre>]]></content>
+		</item>
+		
+		<item>
+			<title>技术写作之reStructureText</title>
+			<link>https://hitchcock717.github.io/posts/restructuretext-review/</link>
+			<pubDate>Wed, 22 May 2019 23:05:02 +0000</pubDate>
+			
+			<guid>https://hitchcock717.github.io/posts/restructuretext-review/</guid>
+			<description>章节标题 ================= This is a heading ================= 内联标记与md相同： 星号-斜体 双星号-加粗 反引号-代码 * text* 内容前后不留白 文字块 下面是文字块内容： :: 这是一段文字块 同样也是</description>
+			<content type="html"><![CDATA[<p>章节标题</p>
+<pre><code>=================
+This is a heading
+=================
+</code></pre><p>内联标记与md相同：</p>
+<p>星号-斜体</p>
+<p>双星号-加粗</p>
+<p>反引号-代码</p>
+<p><code>* text*</code> 内容前后不留白</p>
+<p>文字块</p>
+<pre><code>下面是文字块内容：
+::
+
+   这是一段文字块
+   同样也是文字块
+   还是文字块
+
+这是新的一段。
+</code></pre><p>字段列表</p>
+<pre><code>:标题: reStructuredText语法说明
+
+:作者:
+ - Seay
+ - Seay1
+ - Seay2
+
+:时间: 2017年12月12日
+
+:概述: 这是一篇
+ 关于reStructuredText的语法说明。
+
+ 你在这里可以了解更多语法信息。
+</code></pre><p>标题</p>
+<p>reStructuredText语法说明</p>
+<p>作者</p>
+<ul>
+<li>Seay</li>
+<li>Seay1</li>
+<li>Seay2</li>
+</ul>
+<p>时间</p>
+<p>2017年12月12日</p>
+<p>概述</p>
+<p>这是一篇 关于reStructuredText的语法说明。</p>
+<p>你在这里可以了解更多语法信息。</p>
+<hr>
+<p>列表标记简单：</p>
+<pre><code>* 这是一个项目符号列表.
+* 它有两项，
+  第二项使用两行.
+
+1. 这是个有序列表.
+2. 也有两项.
+
+#. 是个有序列表.
+#. 也有两项.
+</code></pre><p>可嵌套 空行分隔</p>
+<pre><code>这是
+* 一个列表
+
+  * 嵌套列表
+  * 子项
+
+* 父列表继续
+</code></pre><p>行模块</p>
+<pre><code>| 这些行
+| 在源文件里
+| 被分隔的一模一样.
+</code></pre><p>表格与md有区别</p>
+<p>网格表</p>
+<pre><code>+------------------------+------------+----------+----------+
+| Header row, column 1   | Header 2   | Header 3 | Header 4 |
+| (header rows optional) |            |          |          |
++========================+============+==========+==========+
+| body row 1, column 1   | column 2   | column 3 | column 4 |
++------------------------+------------+----------+----------+
+| body row 2             | ...        | ...      |          |
++------------------------+------------+----------+----------+
+</code></pre><p>简单表</p>
+<pre><code>=====  =====  =======
+A      B      A and B
+=====  =====  =======
+False  False  False
+True   False  False
+False  True   False
+True   True   True
+=====  =====  =======
+</code></pre><p>外部链接</p>
+<pre><code>`链接文本 &lt;http://example.com/&gt;`_
+</code></pre><p>图片</p>
+<pre><code>.. image:: ./2017-12-06_raspberry-pi-e1512540834201.png
+  :width: 200px
+</code></pre>]]></content>
+		</item>
+		
+		<item>
+			<title>技术写作之Markdown</title>
+			<link>https://hitchcock717.github.io/posts/markdown-review/</link>
+			<pubDate>Wed, 22 May 2019 23:01:56 +0000</pubDate>
+			
+			<guid>https://hitchcock717.github.io/posts/markdown-review/</guid>
+			<description>标题 引用 &amp;gt; 嵌套 区块内使用md语法 有序列表 无序列表 （*） 列表内使用引用 需要缩进 不勾选 [ ] 代码 ``` 斜体 * * 加粗 ** ** [ 说明 ] ( http://xxxx.com ) 自动链接 表格 First Header |</description>
+			<content type="html"><![CDATA[<p>标题</p>
+<h1 id="heading"></h1>
+<h2 id="heading-1"></h2>
+<h3 id="heading-2"></h3>
+<h4 id="heading-3"></h4>
+<h6 id="heading-4"></h6>
+<p>引用 &gt;</p>
+<blockquote>
+</blockquote>
+<p>嵌套</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>区块内使用md语法</p>
+<blockquote>
+<h1 id="heading-5"></h1>
+<ol>
+<li>有序列表</li>
+</ol>
+<ul>
+<li>无序列表 （*）</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>列表内使用引用</p>
+<blockquote>
+<p>需要缩进</p>
+</blockquote>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> 不勾选 [   ]</p>
+<p>代码 ```</p>
+<p><em>斜体</em> * *</p>
+<p><strong>加粗</strong> ** **</p>
+<p>[ 说明 ] ( <a href="http://xxxx.com">http://xxxx.com</a> ) 自动链接</p>
+<p>表格</p>
+<pre><code>First Header | Second Header | Third Header
+:----------- | :-----------: | -----------:
+Left         | Center        | Right
+Left         | Center        | Right
+</code></pre><pre><code>First Header | Second Header | Third Header
+------------ | ------------- | ------------
+Content Cell | Content Cell  | Content Cell
+Content Cell | Content Cell  | Content Cell
+</code></pre><p>分割线</p>
+<hr>
+</li>
+</ul>
+<p>！图片<a href="/path/to/img.jpg"> 说明 </a></p>
+<p>流程图</p>
+<pre><code>​```graph
+graph TD;
+    A--&gt;B;
+    A--&gt;C;
+    B--&gt;D;
+    C--&gt;E;
+    E--&gt;F;
+    D--&gt;F;
+    F--&gt;G;
+​```
+</code></pre><p>时序图</p>
+<pre><code>​```graph
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice-&gt;John: Hello John, how are you?
+    loop Healthcheck
+        John-&gt;John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts 
+prevail...
+    John--&gt;Alice: Great!
+    John-&gt;Bob: How about you?
+    Bob--&gt;John: Jolly good!
+​```
+</code></pre><p>甘特图</p>
+<pre><code>​```graph
+gantt
+        dateFormat  YYYY-MM-DD
+        title Adding GANTT diagram functionality to mermaid
+        section A section
+        Completed task            :done,    des1, 2014-01-06,2014-01-08
+        Active task               :active,  des2, 2014-01-09, 3d
+        Future task               :         des3, after des2, 5d
+        Future task2               :         des4, after des3, 5d
+        section Critical tasks
+        Completed task in the critical line :crit, done, 2014-01-06,24h
+        Implement parser and jison          :crit, done, after des1, 2d
+        Create tests for parser             :crit, active, 3d
+        Future task in critical line        :crit, 5d
+        Create tests for renderer           :2d
+        Add to mermaid                      :1d
+​```
+</code></pre>]]></content>
+		</item>
+		
+	</channel>
+</rss>

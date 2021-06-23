@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Technical Writing on Darth Vader</title>
+    <link>https://hitchcock717.github.io/tags/technical-writing/</link>
+    <description>Recent content in Technical Writing on Darth Vader</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Wed, 22 May 2019 23:05:02 +0000</lastBuildDate><atom:link href="https://hitchcock717.github.io/tags/technical-writing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>技术写作之reStructureText</title>
+      <link>https://hitchcock717.github.io/posts/restructuretext-review/</link>
+      <pubDate>Wed, 22 May 2019 23:05:02 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/restructuretext-review/</guid>
+      <description>章节标题 ================= This is a heading ================= 内联标记与md相同： 星号-斜体 双星号-加粗 反引号-代码 * text* 内容前后不留白 文字块 下面是文字块内容： :: 这是一段文字块 同样也是</description>
+    </item>
+    
+    <item>
+      <title>技术写作之Markdown</title>
+      <link>https://hitchcock717.github.io/posts/markdown-review/</link>
+      <pubDate>Wed, 22 May 2019 23:01:56 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/markdown-review/</guid>
+      <description>标题 引用 &amp;gt; 嵌套 区块内使用md语法 有序列表 无序列表 （*） 列表内使用引用 需要缩进 不勾选 [ ] 代码 ``` 斜体 * * 加粗 ** ** [ 说明 ] ( http://xxxx.com ) 自动链接 表格 First Header |</description>
+    </item>
+    
+  </channel>
+</rss>

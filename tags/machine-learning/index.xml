@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning on Darth Vader</title>
+    <link>https://hitchcock717.github.io/tags/machine-learning/</link>
+    <description>Recent content in Machine Learning on Darth Vader</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Fri, 15 Nov 2019 17:38:56 +0000</lastBuildDate><atom:link href="https://hitchcock717.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>集成学习（Ensemble Learning）</title>
+      <link>https://hitchcock717.github.io/posts/resemble_learning/</link>
+      <pubDate>Fri, 15 Nov 2019 17:38:56 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/resemble_learning/</guid>
+      <description>参见Tommy Huang Blog 集成学习的概念 Ensemble Learning基本條件是:每個分類器之間應該要有差異，每個分類器準確率需大於0.5。 如果用的分類器沒有差</description>
+    </item>
+    
+    <item>
+      <title>回归（Regression）与 分类（Categorization）</title>
+      <link>https://hitchcock717.github.io/posts/regressioncategorization/</link>
+      <pubDate>Fri, 15 Nov 2019 17:31:56 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/regressioncategorization/</guid>
+      <description>分类与回归的区别 | 特性 | 分类（监督学习） | 回归 | | 输出类型 | 离散数据 | 连续数据 | | 目的 | 寻找决策边界 | 找到最优拟合 | | 评价方法 | 精度、混淆矩</description>
+    </item>
+    
+  </channel>
+</rss>

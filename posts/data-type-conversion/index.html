@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Python之数据类型转换">
+<meta itemprop="description" content="参考自格物blog INT() Three types are allowed to convert to int float: int(-14.2) = -14 str: int(&lsquo;1209&rsquo;) = 1209; int(&#39;-15&#39;) = -15 bytes: int(b&#39;1232&#39;) = 1232 FLOAT() Three types are allowed to convert to float int: float(-1324) = -1324.0 str: conversion is not allowed if &lsquo;&#43;&rsquo;, &lsquo;-&rsquo;, [0-9], &lsquo;.&rsquo; are not included float(&#39;-1209&#39;) = -1209.0; float(&#39;-0120.324&#39;) = -120.324 bytes: conversion is not allowed">
+<meta itemprop="datePublished" content="2019-11-25T18:37:56+00:00" />
+<meta itemprop="dateModified" content="2019-11-25T18:37:56+00:00" />
+<meta itemprop="wordCount" content="809">
+
+
+
+<meta itemprop="keywords" content="Python3,Markdown," />
+<meta property="og:title" content="Python之数据类型转换" />
+<meta property="og:description" content="参考自格物blog INT() Three types are allowed to convert to int float: int(-14.2) = -14 str: int(&lsquo;1209&rsquo;) = 1209; int(&#39;-15&#39;) = -15 bytes: int(b&#39;1232&#39;) = 1232 FLOAT() Three types are allowed to convert to float int: float(-1324) = -1324.0 str: conversion is not allowed if &lsquo;&#43;&rsquo;, &lsquo;-&rsquo;, [0-9], &lsquo;.&rsquo; are not included float(&#39;-1209&#39;) = -1209.0; float(&#39;-0120.324&#39;) = -120.324 bytes: conversion is not allowed" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hitchcock717.github.io/posts/data-type-conversion/" />
+<meta property="article:published_time" content="2019-11-25T18:37:56+00:00" />
+<meta property="article:modified_time" content="2019-11-25T18:37:56+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python之数据类型转换"/>
+<meta name="twitter:description" content="参考自格物blog INT() Three types are allowed to convert to int float: int(-14.2) = -14 str: int(&lsquo;1209&rsquo;) = 1209; int(&#39;-15&#39;) = -15 bytes: int(b&#39;1232&#39;) = 1232 FLOAT() Three types are allowed to convert to float int: float(-1324) = -1324.0 str: conversion is not allowed if &lsquo;&#43;&rsquo;, &lsquo;-&rsquo;, [0-9], &lsquo;.&rsquo; are not included float(&#39;-1209&#39;) = -1209.0; float(&#39;-0120.324&#39;) = -120.324 bytes: conversion is not allowed"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Python之数据类型转换</title>
+	<link rel="stylesheet" href="https://hitchcock717.github.io/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://hitchcock717.github.io">Darth Vader</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://hitchcock717.github.io/posts/">Posts</a>
+				<a href="https://hitchcock717.github.io/about-hugo/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/Hitchcock717" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://hitchcock717.github.io/posts/">Posts</a></li>
+			<li><a href="https://hitchcock717.github.io/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Nov 25, 2019</span></div>
+				<h1>Python之数据类型转换</h1>
+			</header>
+			<div class="content">
+				<p><a href="https://shockerli.net/post/python3-data-type-convert/">参考自格物blog</a></p>
+<h2 id="int">INT()<a href="#int" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Three types are allowed to convert to int</p>
+<ol>
+<li>float: int(-14.2) = -14</li>
+<li>str: int(&lsquo;1209&rsquo;) = 1209; int('-15') = -15</li>
+<li>bytes: int(b'1232') = 1232</li>
+</ol>
+<h2 id="float">FLOAT()<a href="#float" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Three types are allowed to convert to float</p>
+<ol>
+<li>int: float(-1324) = -1324.0</li>
+<li>str: conversion is not allowed if &lsquo;+&rsquo;, &lsquo;-&rsquo;, [0-9], &lsquo;.&rsquo; are not included
+float('-1209') = -1209.0; float('-0120.324') = -120.324</li>
+<li>bytes: conversion is not allowed if &lsquo;+&rsquo;, &lsquo;-&rsquo;, [0-9], &lsquo;.&rsquo; are not included
+float(b'-1233') = -1233.0; float(b'-01233.234') = -1233.234</li>
+</ol>
+<h2 id="complex">COMPLEX()<a href="#complex" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Three types are allowed to convert to complex</p>
+<ol>
+<li>int: automatically add &lsquo;0j&rsquo; to imaginary number
+complex(12) = (12+0j)</li>
+<li>float: automatically add &lsquo;0j&rsquo; to imaginary number
+complex(-12.99) = (-12.99+0j)</li>
+<li>str: when str is being converted to complex, if the conversion type is int or float, the type of complex will be converted later; if totally suits the rule of complex expression, the conversion will be made instantly.
+complex('-12.12') = (-12.12+0j);
+complex(&lsquo;12.0&rsquo;) = (-12+0j) # cut the decimal
+complex('-13') = (-13+0j);
+complex('-13+8j') = (-13+8j);
+complex(b'12') = callback(Type &lsquo;bytes&rsquo; is not allowed);
+complex(&lsquo;12 + 9j&rsquo;) = callback(No whitespace is near &lsquo;+')</li>
+</ol>
+<h2 id="str">STR()<a href="#str" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Every type could be converted to str</p>
+<ol>
+<li>int: str(12) = 12</li>
+<li>float: str(-14.30) = -14.3</li>
+<li>complex: when complex is being converted to str, the type of complex will be converted to standard complex expression and then to str.
+str(complex(12 + 9j)) = (12+9j)
+str(complex(12,9)) = (12+9j)</li>
+<li>bytes: str(b&rsquo;hello world) = b&rsquo;hello world&rsquo;;
+b&rsquo;hello world'.decode = hello world;
+str(b&rsquo;hello world', encoding=&lsquo;utf-8&rsquo;) = hello world;
+str(b'\xe4\xb8\xad\xe5\x9b\xbd', encoding=&lsquo;utf-8&rsquo;) = 中国</li>
+</ol>
+<h3 id="str-list">STR-LIST()<a href="#str-list" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>str: the result will be initially converted to standard &lsquo;list expression&rsquo; and then to str</p>
+<ol>
+<li>str([]) = [];</li>
+<li>str([1,2,3]) = [1,2,3]</li>
+<li>&lsquo;'.join([&lsquo;a&rsquo;,&lsquo;b&rsquo;,&lsquo;c&rsquo;]) = abc</li>
+</ol>
+<h3 id="str-tuple">STR-TUPLE()<a href="#str-tuple" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>str: the result will be initially converted to standard &lsquo;tuple expression&rsquo; and then to str</p>
+<ol>
+<li>str(()) = ()</li>
+<li>str((1,2,3)) = (1,2,3)</li>
+<li>&lsquo;'.join((&lsquo;a&rsquo;,&lsquo;b&rsquo;,&lsquo;c&rsquo;)) = abc</li>
+</ol>
+<h3 id="str-dict">STR-DICT()<a href="#str-dict" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>str: the result will be initially converted to standard &lsquo;dict expression&rsquo; and then to str</p>
+<ol>
+<li>str({&lsquo;name&rsquo;:&lsquo;hello&rsquo;,&lsquo;age&rsquo;:18}) = {&lsquo;name&rsquo;:&lsquo;hello&quot;, &lsquo;age&rsquo;: 18}</li>
+<li>str({}) = {}</li>
+<li>&lsquo;'.join({&lsquo;name&rsquo;: &lsquo;hello&rsquo;, &lsquo;age&rsquo;: 18}) = nameage</li>
+</ol>
+<h3 id="str-set">STR-SET()<a href="#str-set" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>the result will be initially converted to standard &lsquo;set expression&rsquo; and then to str</p>
+<ol>
+<li>str(set({})) = set()</li>
+<li>str({1,2,3}) = {1,2,3}</li>
+<li>&lsquo;'.join({&lsquo;a&rsquo;, &lsquo;b&rsquo;, &lsquo;c&rsquo;}) = abc</li>
+</ol>
+<h2 id="btyes">BTYES()<a href="#btyes" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>only support str
+&lsquo;中国&rsquo;.encode() = b&rsquo;\xe4\xb4\xad\x32\x9b\xbd&rsquo;
+bytes(&lsquo;中国&rsquo;, encoding=&lsquo;utf-8&rsquo;) = #b&rsquo;\xe4\x6b\xad\xe6\x96\xbd&rsquo;</p>
+<h2 id="list">LIST()<a href="#list" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>only support sequence, such as str, tuple, dict, set</p>
+<ol>
+<li>str: list(&lsquo;1213ac&rsquo;) = [&lsquo;1&rsquo;,&lsquo;2&rsquo;,&lsquo;1&rsquo;,&lsquo;3&rsquo;,&lsquo;a&rsquo;,&lsquo;c&rsquo;]</li>
+<li>bytes: choose each bytes&rsquo; ASCII decimal system value
+list(b&rsquo;hello') = [104, 101, 108, 108, 111]</li>
+<li>tuple: just list((1,2,3)) = [1,2,3]</li>
+<li>dict: choose key-name as list-value
+list({&lsquo;name&rsquo;:&lsquo;hello&rsquo;, &lsquo;age&rsquo;: 18}) = [&lsquo;name&rsquo;, &lsquo;age&rsquo;]</li>
+<li>set: drop duplication, and then convert
+list({1,2,3,3,2,1}) = [1,2,3]</li>
+</ol>
+<h2 id="tuple">TUPLE()<a href="#tuple" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Same as list, only support sequence</p>
+<ol>
+<li>str: tuple(&lsquo;中国人&rsquo;) = （&lsquo;中&rsquo;, &lsquo;国&rsquo;, &lsquo;人&rsquo;)</li>
+<li>bytes: tuple(b&rsquo;hello') = (104, 101, 108, 108, 111)</li>
+<li>list: tuple([1,2,3]) = (1,2,3)</li>
+<li>dict: tuple({&lsquo;name&rsquo;:&lsquo;hello&rsquo;, &lsquo;age&rsquo;: 18}) = (&lsquo;name&rsquo;, &lsquo;age&rsquo;)</li>
+<li>set: tuple({1,2,3,3,2,1}) = (1,2,3)</li>
+</ol>
+<h2 id="dict">DICT()<a href="#dict" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ol>
+<li>
+<p>str:
+1.1 import json
+'''
+import json
+user_info = &lsquo;{&lsquo;name&rsquo;:&lsquo;john&rsquo;, &lsquo;gender&rsquo;:&lsquo;male&rsquo;}&rsquo;
+print(json.loads(user_info))</p>
+<h1 id="namejohn-gendermale">{&lsquo;name&rsquo;:&lsquo;john&rsquo;, &lsquo;gender&rsquo;:&lsquo;male&rsquo;}<a href="#namejohn-gendermale" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>1.2 import eval # not recommended for serious safety problems
+1.3 import ast.literal_eval
+'''
+import ast
+user_info = &lsquo;{&lsquo;name&rsquo;:&lsquo;john&rsquo;, &lsquo;gender&rsquo;:&lsquo;male&rsquo;}&rsquo;
+user_dict = ast.literal_eval(user_info)
+print(user_dict)</p>
+<h1 id="namejohn-gendermale-1">{&lsquo;name&rsquo;:&lsquo;john&rsquo;, &lsquo;gender&rsquo;:&lsquo;male&rsquo;}<a href="#namejohn-gendermale-1" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+</li>
+<li>
+<p>list:
+2.1 use zip to map two lists into a dict
+'''
+list1 = [1,2,3,4]
+list2 = [1,2,3]
+print(dict(zip(list1,list2)))</p>
+<h1 id="11-22-33">{1:1, 2:2, 3:3}<a href="#11-22-33" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>2.2 convert nesting list into dict
+'''
+li = [
+[1, 111],
+[2, 222],
+[3, 333],
+]
+print(dict(li))</p>
+<h1 id="1-111-2-222-3-333">{1: 111, 2: 222, 3: 333}<a href="#1-111-2-222-3-333" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+</li>
+<li>
+<p>tuple:
+similar with list
+3.1 use zip to map two tuples into a dict
+'''
+tup1 = (1,2,3,4)
+tup2 = (1,2,3)
+print(dict(zip(list1,list2)))</p>
+<h1 id="11-22-33-1">{1:1, 2:2, 3:3}<a href="#11-22-33-1" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>2.2 convert nesting tuple into dict
+'''
+tp = ()
+(1, 111),
+(2, 222),
+(3, 333),
+)
+print(dict(tp))</p>
+<h1 id="1-111-2-222-3-333-1">{1: 111, 2: 222, 3: 333}<a href="#1-111-2-222-3-333-1" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+</li>
+<li>
+<p>set:
+'''
+set1 = {1,2,3}
+set2 = {&lsquo;a&rsquo;,&lsquo;b&rsquo;,&lsquo;c&rsquo;}
+print(dict(zip(set1,set2)))</p>
+<h1 id="1c-2a-3b">{1:&lsquo;c&rsquo;, 2:&lsquo;a&rsquo;, 3:&lsquo;b&rsquo;}<a href="#1c-2a-3b" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+</li>
+</ol>
+<h2 id="set">SET()<a href="#set" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ol>
+<li>str: cut str into tuple and then drop duplications into a set
+print(set(&lsquo;hello&rsquo;))
+#{&lsquo;l&rsquo;,&lsquo;o&rsquo;,&lsquo;e&rsquo;,&lsquo;h&rsquo;}</li>
+<li>bytes: set(b&rsquo;hello') = {104, 108, 101, 111}</li>
+<li>list: drop duplications in list first, and then convert
+set([1,2,3,2,1]) = {1,2,3}</li>
+<li>tuple: drop duplications in list first, and then convert
+set((1,2,3,2,1)) = {1,2,3}</li>
+<li>dict: choose dict{key-name} to group them
+set({&lsquo;name&rsquo;:&lsquo;hello&rsquo;, &lsquo;age&rsquo;:18})</li>
+</ol>
+<h2 id="other-types">OTHER-TYPES<a href="#other-types" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Convert embedded object:</p>
+<blockquote>
+<ol>
+<li>str(int)</li>
+</ol>
+</blockquote>
+<ol start="2">
+<li>str(hex)
+Convert class instance:
+'''
+class Hello:
+pass
+obj = Hello()
+print(str(obj))
+<h1 id="__main__hello-object-at-0x1071c6635">&lt;<strong>main</strong>.Hello object at 0x1071c6635&gt;<a href="#__main__hello-object-at-0x1071c6635" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+</li>
+</ol>
+<p>Conver function:
+'''
+def hello():
+pass
+print(str(hello))
+# &lt;function hello at 0x103d3a023&gt;</p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://hitchcock717.github.io/tags/python3">Python3</a></span><span class="tag"><a href="https://hitchcock717.github.io/tags/markdown">Markdown</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>809 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-11-26 02:37 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://hitchcock717.github.io/posts/neo4j/neo4j/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>CQL Query Language -- Neo4j</span>
+			</a>
+			<a class="prev-post" href="https://hitchcock717.github.io/posts/bitcoin/bitcoin/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>比特币</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://hitchcock717.github.io">Hitchcock</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://hitchcock717.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://hitchcock717.github.io/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

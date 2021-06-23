@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Neo4j on Darth Vader</title>
+    <link>https://hitchcock717.github.io/tags/neo4j/</link>
+    <description>Recent content in Neo4j on Darth Vader</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Wed, 27 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://hitchcock717.github.io/tags/neo4j/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CQL Query Language -- Neo4j</title>
+      <link>https://hitchcock717.github.io/posts/neo4j/neo4j/</link>
+      <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/neo4j/neo4j/</guid>
+      <description>This document is summarized based on the introdcution of Neo4j in W3Cschool Neo4j CQL common order/clause: ###CREATE 1.1 Used to create non-attar node; create a non-statistic node Grammar: CREATE (&amp;lt;node-name:) : node name to create : node tag name 1.2 Used to create attractive node Grammar: CREATE( ​ :​ { ​ :​ &amp;hellip;&amp;hellip; ​ :​ } ) Attr is a key-value pair. 1.3 Used to create one</description>
+    </item>
+    
+  </channel>
+</rss>

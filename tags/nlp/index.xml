@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NLP on Darth Vader</title>
+    <link>https://hitchcock717.github.io/tags/nlp/</link>
+    <description>Recent content in NLP on Darth Vader</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 11 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://hitchcock717.github.io/tags/nlp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PaperWeekly-2: nlp中的基础知识点整理(partI)</title>
+      <link>https://hitchcock717.github.io/posts/paperweekly-2/paperweekly-2/</link>
+      <pubDate>Sat, 11 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/paperweekly-2/paperweekly-2/</guid>
+      <description>写在开头：9号突然接到阿里某部门的面试，未经准备，吃了大亏。现总结面试考的几个点如下： 协同过滤算法 基本的分词算法 扯到云计算，谈谈认识 云服务器</description>
+    </item>
+    
+    <item>
+      <title>PaperWeekly-1: nlp中的实体关系抽取方法总结笔记</title>
+      <link>https://hitchcock717.github.io/posts/paperweekly-1/paperweekly-1/</link>
+      <pubDate>Tue, 24 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/paperweekly-1/paperweekly-1/</guid>
+      <description>The source comes from: https://zhuanlan.zhihu.com/p/77868938 Catagory Q1：与联合抽取对比，Pipeline方法有哪些缺点？ Q2：NER除了LSTM+CRF，还有哪些解码方式？如何解决嵌套实体问题？</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Darth Vader</title>
+    <link>https://hitchcock717.github.io/</link>
+    <description>Recent content on Darth Vader</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 11 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://hitchcock717.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PaperWeekly-2: nlp中的基础知识点整理(partI)</title>
+      <link>https://hitchcock717.github.io/posts/paperweekly-2/paperweekly-2/</link>
+      <pubDate>Sat, 11 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/paperweekly-2/paperweekly-2/</guid>
+      <description>写在开头：9号突然接到阿里某部门的面试，未经准备，吃了大亏。现总结面试考的几个点如下： 协同过滤算法 基本的分词算法 扯到云计算，谈谈认识 云服务器</description>
+    </item>
+    
+    <item>
+      <title>PaperWeekly-1: nlp中的实体关系抽取方法总结笔记</title>
+      <link>https://hitchcock717.github.io/posts/paperweekly-1/paperweekly-1/</link>
+      <pubDate>Tue, 24 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/paperweekly-1/paperweekly-1/</guid>
+      <description>The source comes from: https://zhuanlan.zhihu.com/p/77868938 Catagory Q1：与联合抽取对比，Pipeline方法有哪些缺点？ Q2：NER除了LSTM+CRF，还有哪些解码方式？如何解决嵌套实体问题？</description>
+    </item>
+    
+    <item>
+      <title>CQL Query Language -- Neo4j</title>
+      <link>https://hitchcock717.github.io/posts/neo4j/neo4j/</link>
+      <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/neo4j/neo4j/</guid>
+      <description>This document is summarized based on the introdcution of Neo4j in W3Cschool Neo4j CQL common order/clause: ###CREATE 1.1 Used to create non-attar node; create a non-statistic node Grammar: CREATE (&amp;lt;node-name:) : node name to create : node tag name 1.2 Used to create attractive node Grammar: CREATE( ​ :​ { ​ :​ &amp;hellip;&amp;hellip; ​ :​ } ) Attr is a key-value pair. 1.3 Used to create one</description>
+    </item>
+    
+    <item>
+      <title>Python之数据类型转换</title>
+      <link>https://hitchcock717.github.io/posts/data-type-conversion/</link>
+      <pubDate>Mon, 25 Nov 2019 18:37:56 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/data-type-conversion/</guid>
+      <description>参考自格物blog INT() Three types are allowed to convert to int float: int(-14.2) = -14 str: int(&amp;lsquo;1209&amp;rsquo;) = 1209; int(&#39;-15&#39;) = -15 bytes: int(b&#39;1232&#39;) = 1232 FLOAT() Three types are allowed to convert to float int: float(-1324) = -1324.0 str: conversion is not allowed if &amp;lsquo;+&amp;rsquo;, &amp;lsquo;-&amp;rsquo;, [0-9], &amp;lsquo;.&amp;rsquo; are not included float(&#39;-1209&#39;) = -1209.0; float(&#39;-0120.324&#39;) = -120.324 bytes: conversion is not allowed</description>
+    </item>
+    
+    <item>
+      <title>比特币</title>
+      <link>https://hitchcock717.github.io/posts/bitcoin/bitcoin/</link>
+      <pubDate>Fri, 22 Nov 2019 18:37:56 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/bitcoin/bitcoin/</guid>
+      <description>Bitcoin —— Crypto-Currency Two functions Hash Signiture (Public-key cryptography) Hash Three functions 1. collision resistance 抗碰撞性 collison refers to: input x != y; output H(x) = H(y) ** In theory, it works** Practice: Upload a file on the cloud platform, how to prevent anyone from tampering it? Solution: 1. Consider it as an input file, caculate its hash(H(input)) and save it in local space. Then upload</description>
+    </item>
+    
+    <item>
+      <title>集成学习（Ensemble Learning）</title>
+      <link>https://hitchcock717.github.io/posts/resemble_learning/</link>
+      <pubDate>Fri, 15 Nov 2019 17:38:56 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/resemble_learning/</guid>
+      <description>参见Tommy Huang Blog 集成学习的概念 Ensemble Learning基本條件是:每個分類器之間應該要有差異，每個分類器準確率需大於0.5。 如果用的分類器沒有差</description>
+    </item>
+    
+    <item>
+      <title>HTML之DOM节点树</title>
+      <link>https://hitchcock717.github.io/posts/html_dom-learning/</link>
+      <pubDate>Fri, 15 Nov 2019 17:33:56 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/html_dom-learning/</guid>
+      <description>具体参见菜鸟教程 DOM概念 DOM (Document Object Model) 译为文档对象模型，是 HTML 和 XML 文档的编程接口。 HTML DOM 定义了访问和操作 HTML 文档的标准方法。 DOM 以树结构表达 HTML 文档。 ##</description>
+    </item>
+    
+    <item>
+      <title>回归（Regression）与 分类（Categorization）</title>
+      <link>https://hitchcock717.github.io/posts/regressioncategorization/</link>
+      <pubDate>Fri, 15 Nov 2019 17:31:56 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/regressioncategorization/</guid>
+      <description>分类与回归的区别 | 特性 | 分类（监督学习） | 回归 | | 输出类型 | 离散数据 | 连续数据 | | 目的 | 寻找决策边界 | 找到最优拟合 | | 评价方法 | 精度、混淆矩</description>
+    </item>
+    
+    <item>
+      <title>爬虫之Fiddler-Mono代理工具</title>
+      <link>https://hitchcock717.github.io/posts/fiddler-mono-mac/</link>
+      <pubDate>Wed, 22 May 2019 23:12:35 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/fiddler-mono-mac/</guid>
+      <description>近期做知网爬虫项目的一些工具准备 具体参见Cyrus Ren blog Fiddler介绍 http调试代理工具，以代理服务器的方式监听系统的http网络数据流</description>
+    </item>
+    
+    <item>
+      <title>陈嘉映的哲学之道</title>
+      <link>https://hitchcock717.github.io/posts/cjy-philosophy/</link>
+      <pubDate>Wed, 22 May 2019 23:05:59 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/cjy-philosophy/</guid>
+      <description>科学通过它所提供的世界图景改变我们对世界的认识。 chapter one 理性与哲学 1.感应思维——对事物的理解方式 2.凡不用因果机制来解释事物的发生，都称之为迷</description>
+    </item>
+    
+  </channel>
+</rss>

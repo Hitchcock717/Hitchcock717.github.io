@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="比特币">
+<meta itemprop="description" content="Bitcoin —— Crypto-Currency Two functions Hash Signiture (Public-key cryptography) Hash Three functions 1. collision resistance 抗碰撞性 collison refers to: input x != y; output H(x) = H(y) ** In theory, it works** Practice: Upload a file on the cloud platform, how to prevent anyone from tampering it? Solution: 1. Consider it as an input file, caculate its hash(H(input)) and save it in local space. Then upload">
+<meta itemprop="datePublished" content="2019-11-22T18:37:56+00:00" />
+<meta itemprop="dateModified" content="2019-11-22T18:37:56+00:00" />
+<meta itemprop="wordCount" content="2721">
+
+
+
+<meta itemprop="keywords" content="Note,Markdown," />
+<meta property="og:title" content="比特币" />
+<meta property="og:description" content="Bitcoin —— Crypto-Currency Two functions Hash Signiture (Public-key cryptography) Hash Three functions 1. collision resistance 抗碰撞性 collison refers to: input x != y; output H(x) = H(y) ** In theory, it works** Practice: Upload a file on the cloud platform, how to prevent anyone from tampering it? Solution: 1. Consider it as an input file, caculate its hash(H(input)) and save it in local space. Then upload" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hitchcock717.github.io/posts/bitcoin/bitcoin/" />
+<meta property="article:published_time" content="2019-11-22T18:37:56+00:00" />
+<meta property="article:modified_time" content="2019-11-22T18:37:56+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="比特币"/>
+<meta name="twitter:description" content="Bitcoin —— Crypto-Currency Two functions Hash Signiture (Public-key cryptography) Hash Three functions 1. collision resistance 抗碰撞性 collison refers to: input x != y; output H(x) = H(y) ** In theory, it works** Practice: Upload a file on the cloud platform, how to prevent anyone from tampering it? Solution: 1. Consider it as an input file, caculate its hash(H(input)) and save it in local space. Then upload"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>比特币</title>
+	<link rel="stylesheet" href="https://hitchcock717.github.io/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://hitchcock717.github.io">Darth Vader</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://hitchcock717.github.io/posts/">Posts</a>
+				<a href="https://hitchcock717.github.io/about-hugo/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/Hitchcock717" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://hitchcock717.github.io/posts/">Posts</a></li>
+			<li><a href="https://hitchcock717.github.io/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Nov 22, 2019</span></div>
+				<h1>比特币</h1>
+			</header>
+			<div class="content">
+				<h2 id="bitcoin--crypto-currency">Bitcoin —— Crypto-Currency<a href="#bitcoin--crypto-currency" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><em>Two functions</em></p>
+<ol>
+<li>Hash</li>
+<li>Signiture (Public-key cryptography)</li>
+</ol>
+<h3 id="hash">Hash<a href="#hash" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><em>Three functions</em>
+<strong>1. collision resistance</strong> 抗碰撞性</p>
+<blockquote>
+<p>collison refers to:
+input x != y;
+output H(x) = H(y)</p>
+</blockquote>
+<pre><code>** In theory, it works**
+
+Practice: Upload a file on the cloud platform, how to prevent anyone from tampering it?
+Solution: 
+1. Consider it as an input file, caculate its hash(H(input)) and save it in local space. Then upload it. 
+2. Download the file from the cloud and recaculate its hash.
+3. Compare two hashes. If different, it has been tampered.
+</code></pre>
+<blockquote>
+<p>MD5: Hash algorithm
+can produce a 128-bit hash value
+can be cracked
+cannot be utilized into SSL pub-key certificate &amp; digital signiture</p>
+</blockquote>
+<p><strong>2. Hiding</strong> 单向不可逆性</p>
+<blockquote>
+<p>input X ——&gt; H(X)
+H(X) !——&gt; X</p>
+</blockquote>
+<pre><code>** Brute force can crack it**
+</code></pre>
+<h4 id="collision-resistance--hiding--digital-commitment">Collision resistance + Hiding ——&gt; Digital Commitment<a href="#collision-resistance--hiding--digital-commitment" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<blockquote>
+<p>Initially, publicize H(X); then publicize X, because H(X) is known and hiding allows it is impossible to deduce X from H(X). To verify X, recaculate H(X).</p>
+</blockquote>
+<p><strong>3. Puzzle Friendly</strong></p>
+<blockquote>
+<p>It is unpredictable to calculate H(X). Brute Force is the only path.
+POW proof of work
+Get newest info of block header; then try nonce, calculate (SHA-256(SHA-256(block header)) to satisfy the requirement of <strong>H(block header) &lt;= target</strong></p>
+</blockquote>
+<h3 id="signiture">Signiture<a href="#signiture" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<pre><code>1. private key represents miner's control over BitCoin
+2. Used in Transaction
+</code></pre>
+<h2 id="bitcoin--data-structure">BitCoin —— Data Structure<a href="#bitcoin--data-structure" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><em>Two Structure</em></p>
+<ol>
+<li>Hash Pointers</li>
+<li>Merkle Tree</li>
+</ol>
+<p><strong>Hash Pointers</strong>
+图示：{% asset_img WechatIMG604.png BitCoin-1 %} <a href="https://www.jianshu.com/p/f3570d8e1d27">摘自简书</a></p>
+<blockquote>
+<p>Compared with normal pointers, hash pointers can detect tampering by saving extra hash into the structure body.
+图示：{% asset_img WechatIMG605.png BitCoin-2 %}  <a href="https://www.jianshu.com/p/f3570d8e1d27">摘自简书</a>
+According to above pic, there is only a need to remember the last hash if detecting tampering because block chain is a linked list using hash pointers.</p>
+</blockquote>
+<p><strong>Merkle Tree</strong>
+图示：{% asset_img WechatIMG606.png BitCoin-3 %}  <a href="https://www.jianshu.com/p/f3570d8e1d27">摘自简书</a></p>
+<blockquote>
+<p>First Tier(root node): Root Hash saved; Hash(root hash) = Hash(concat[hash(child node1)+hash(child node2)])
+Second/Third Tier: Hash Pointers; Save the hashes of data blocks in the bottom node
+Bottom Tier(omitted): called &lsquo;tx&rsquo; ——&gt; transaction</p>
+</blockquote>
+<p>Obviously, it is enough to save root hash if detecting tampering. And each block is divided into two sections: one is block header which saves root hash without any tx; the other is block body which saves tx.</p>
+<blockquote>
+</blockquote>
+<p>Node: Any computing machine in the block chain network, e.g. cellphone, mining machine, server&hellip;
+Full Node: block header &amp; block body saved
+Light Node(like wxapplet): block header saved only</p>
+<p>Question: How to prove any transaction logged into the block chain in terms of light nodes?</p>
+<p>Solution: The Merkle Tree can provide Merkle Proof.
+图示：{% asset_img WechatIMG607.png BitCoin-4 %}  <a href="https://www.bilibili.com/video/av37065233?p=3">截取自课程视频</a>
+Proof of Membership: theta(log(n)) complexity if proposing Num(n) tx in the entire tree.
+Proof of Non-Membership: theta(n)</p>
+<h2 id="bitcoin--concensus-protocol">BitCoin —— Concensus Protocol<a href="#bitcoin--concensus-protocol" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Question: How does Central Bank issue digital currency?</p>
+<p>Solution One: Spending = Duplication; may cause &lsquo;double spending&rsquo;
+Solution Two: Create a list of recording each note&rsquo;s owner, e.g.</p>
+<blockquote>
+<p>017 ——&gt; Bob
+018 ——&gt; Tim
+019 ——&gt; Syria
+Then ceritfy the note before transactions; Valid, but centralized
+BitCoin is de-centralized, so the responsibility of verifying notes has transferred from the central bank to the mass.</p>
+</blockquote>
+<p>Two impending quetions about issuing digital currency:</p>
+<ol>
+<li>Who owns the legal right to issue?</li>
+<li>How to verify the validity of transaction to prevent from double spending?</li>
+</ol>
+<p>For Question One:</p>
+<blockquote>
+<p>Need to know how to make BitCoin transactions first
+Create a blcok chain: two types of hash pointer exist; One is to target at the connection between blocks. The other is to target at the source of each BitCoin.
+The entire transaction includes: Input ——&gt; to explain the source and the pub-key of payer; Output ——&gt; to explain the pub-key hash of recipients</p>
+</blockquote>
+<p>Some sub-questions:</p>
+<ol>
+<li>During the process of transaction, does the payer(A) need to know something about the recipient(B)?
+Answer: A needs to know B&rsquo;s address because this address is calculated based on B&rsquo;s pub-key.</li>
+<li>During the above process, does B need to know something about A?
+Answer: B needs to know A&rsquo;s pub-key, namely, A&rsquo;s identity. Each node needs to know A&rsquo;s pub-key in order to verify it.</li>
+<li>If B' disguises himself as A and claims to make transaction with A&rsquo;s pub-key, how to prevent this situation?
+Answer: The output of Coinbase tx saves the hash of the source.</li>
+</ol>
+<p>How to put the transaction info into the block chain?
+The content of ledger needs to achieve distributed consensus.</p>
+<blockquote>
+<p>But FLP impossibility result tolds:
+In an asynchronous system, there is no cap on the network transmition and even if at least one member reveals faulty, concensus is impossbile.</p>
+</blockquote>
+<p>Type of Potential attacks:</p>
+<ol>
+<li>Sybil attack: the minority nodes control multiple fake identities to attack other normal nodes in majority.
+Solution in BitCoin: Computing power voting</li>
+<li>Forking attack: Not in the longest valid chain
+Imagin that two blocks of the same length has been mined at the same time, which one is to be accepted?
+Solution in BitCoin: Keep watching for a while. If the one is first to be continued, the other is considered as &lsquo;orphan block&rsquo;.</li>
+</ol>
+<p>The reason why mining: For blcok reward only offered by coinbase tx and transaction fee</p>
+<h2 id="the-realization-of-bitcoin-system">The realization of BitCoin system<a href="#the-realization-of-bitcoin-system" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>BitCoin vs Etheroem: Transaction-based ledger; Account-based ledger</p>
+<p>Question One:</p>
+<blockquote>
+<p>Supposing that the most computing power is controlled by honest nodes, is it possible to prove all transactions recorded in blocks valid?
+Answer: If node A transfers fee to fake node M
+The fake transaction will not be validified because M cannot falsify A&rsquo;s private key, which proves the transaction is unacceptable. Then the block becomes an orphan.</p>
+</blockquote>
+<p>Question Two:</p>
+<blockquote>
+<p>Supposing that a malicious node with ledgering right makes double spending attack, will the situation be?
+Answer: If the malicious node M makes M-to-A transaction, and at the same time makes M-to-M' transaction, this kind of forking attack forces other honest nodes to be connected with M-to-M' block and M-to-A block becomes an orphan. How to prevent from M&rsquo;s receiving goods without paying?
+Just waiting for several confirmations from following blocks. It is prescribed that at least six confirmations can prove the chain to be valid in BitCoin concept.</p>
+</blockquote>
+<p>From the above case, it can be concluded that the irrevocability of block chain is temporary, particularly in the initial phase of recording in the blocks, even if the entire chain is an irrevocable ledger.</p>
+<p>Question Three:</p>
+<blockquote>
+<p>Supposing that a malicious node with ledgering right resists recording valid transactions into the blocks.
+Answer: Never mind. Waiting for next block.
+In fact, BitCoin sets limits to each block&rsquo;s transaction num. The limit is not more than 1M. If the current block cannot record info, then wait for next.</p>
+</blockquote>
+<h3 id="selfish-mining">Selfish Mining<a href="#selfish-mining" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Selfish mining is a strategy for mining bitcoin in which groups of miners collude to increase their revenue. Bitcoin was invented to decentralize production and distribution of money. But selfish mining can result in centralization of bitcoin mining operations. <a href="https://www.investopedia.com/terms/s/selfish-mining.asp">参考自investopedia</a></p>
+<p>Threats from selfish mining:</p>
+<ol>
+<li>The safety of the entire network decreases. No longer need 51 per cent computing power to make attacks.</li>
+<li>Some miners with limited computing power find selfish mining a preferable strategy.</li>
+</ol>
+<h3 id="utxo">UTXO<a href="#utxo" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h4 id="unspent-transaction-output">Unspent Transaction Output<a href="#unspent-transaction-output" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>{% asset_img UTXO.png UTXO %}</p>
+<p><a href="https://www.zhihu.com/question/59913301">参考知乎</a></p>
+<h2 id="bitcoin-network">BitCoin Network<a href="#bitcoin-network" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Desiging principle: Simple, robust but no efficient</p>
+<blockquote>
+<p>Because each node needs to maintain a group of transactions waiting for being recorded into blocks.
+If listening a A-B transaction, record it;
+If listening a A-C double spending attack, deny it;
+If listening a same A-B transaction, delete it;
+If listening a same A-C transaction (the same source), delete it.</p>
+</blockquote>
+<h2 id="the-adjustment-of-mining-difficulty-in-bitcoin">The adjustment of mining difficulty in BitCoin<a href="#the-adjustment-of-mining-difficulty-in-bitcoin" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Difficulty = (difficulty - 1 - target) / target [difficulty=1]</p>
+<p>Question One:
+Why adjusting its difficulty? If the time for generating blocks is too short, what is its result?
+Forking attack is easy to make. Even multiple forks, makes it harder for the chain to achieve concensus.
+The speed for generating blocks is ten mins and that for ETH is fifteen secs, meaning it is necessary for ETH to have a new ghost. Because in the ghost, orphan block cannot be abandoned randomly, but given rewards.</p>
+<p>Question Two:
+How to adjust mining difficulty?
+Every 2016 blocks (about two weeks) as an interval to adjust the target threshold. The equation is:</p>
+<blockquote>
+<p>Target = target * (actual time/expected time)
+actual time refers to the real spent time for generating 2016 blocks in the chain;
+expected time refers to the expected spent time for generating 2016 blocks in the chain.</p>
+</blockquote>
+<p>Therefore, smaller the target is, more difficulty the mining will have.
+Relevant question: if the chain holds a malicious node, how to deal with it if not adjust target in the code?
+Answer: The honest miners will not accept it if not adjust the block publicized.</p>
+<h2 id="bitcoin-mining">BitCoin Mining<a href="#bitcoin-mining" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Proof of safety in BitCoin:</p>
+<ol>
+<li>Cryptography</li>
+<li>Consensus</li>
+</ol>
+<p>Equipment for mining:
+Generation one: CPU
+Generation two: GPU
+Generation Three: ASIC</p>
+<p>Mining Pool:
+Pool Manager (responsible for what full nodes require to do) ——&gt; Several Miners (calculate hash)</p>
+<p>How to distribute profits?
+Depending on POW. Supposing that the pre-70 zero of target nonce can meet the requirement, the manager can regulate that 1 share will be earned if first finding pre-60 zero of target nonce. Afterwards, profits will be distributed based on the num of share when BitCoin is ensured.</p>
+<p>Supposing that there is a pool of at least 51 per cent computing power, which kind of attack can it make?</p>
+<blockquote>
+<ol>
+<li>forking attack</li>
+</ol>
+</blockquote>
+<ol start="2">
+<li>boycott; If malicious node A wants the entire chain to boycott B&rsquo;s every relevant transaction, A will fork a block without B if A finds a block with B. More terribly, if A makes boycott in public, other &lsquo;weak&rsquo; miners dare not put B&rsquo;s transaction into blocks because it will be in vain if put it.</li>
+<li>Stealth; Impossible</li>
+</ol>
+<h2 id="bitcoin-script">BitCoin Script<a href="#bitcoin-script" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><a href="https://zhuanlan.zhihu.com/p/25461051">参考自知乎巴比特</a>
+输入交易见图示：{% asset_img WechatIMG608.png BitCoin-5 %}
+输出交易见图示：{% asset_img WechatIMG609.png BitCoin-6 %}</p>
+<h3 id="stack">Stack<a href="#stack" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Core: Last in First Out
+In the ouput content, OP_DUP means duplicating the top element in the stack; OP_EQUALVERIFY means verifying whether two elements in the top of stack are equal.</p>
+<h3 id="transaction">Transaction<a href="#transaction" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>{% asset_img WechatIMG610.png BitCoin-7 %}</p>
+<h3 id="standard-transaction-script">Standard transaction script<a href="#standard-transaction-script" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>P2PKH, Pay to Public Key Hash
+When Alice wants to transfer fees to Bob, input script shows Bob&rsquo;s address (equals pub-key hash);
+When Bob wants to transfer fees to Carol, output script shows Bob&rsquo;s pub-key and signiture signed by Bob&rsquo;s private-key because Bob wants to prove he owns his private-key of this address.</p>
+<p>Therefore, output script shows the recipient&rsquo;s pub-key hash; input script shows his sig &amp; pub-key.</p>
+<p>How to run input/output script?</p>
+<blockquote>
+<p>Input script is initialized. Owing to the rule of script that is run from left to right, sig is first put into the stack, and then is the pub-key.
+Then, output script is run from left to right. The first order is OP_DUP.
+Next, calculate OP_HASH160. That means calculating the top element hash, to get pub-key hash.
+Afterwards, put pub-key hash of output script into the stack. It should be distinguished with the previous hash.
+Run OP_EQUALVERIFY, to verify whether two hashes in the top of stack are equal. If equal, then to be continued; if not, kill and return false.
+Run OP_CHECKSIG, to use two elements (pub-key and sig left in the stack) in the top of stack as verifying whether sig is valid. If valid, return success; if not, return false.</p>
+</blockquote>
+<h3 id="proof-of-burn">Proof of burn<a href="#proof-of-burn" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>If any word of &lsquo;return&rsquo; is recorded in the output script, the result will return false whatever the input script is designed as. Then corresponding UTXO will be deleted.
+Function: &lsquo;burn&rsquo; a little BitCoin to charge for recording info in the block.</p>
+<h2 id="fork-in-bitcoin">Fork in BitCoin<a href="#fork-in-bitcoin" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Types:
+1.Protocol Fork
+2.Hark Fork
+3.Soft Fork</p>
+<h3 id="hard-fork">Hard Fork<a href="#hard-fork" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Due to block size limit.
+The original limit is 1M. When upgrading, the limit will increase to 4M. But the upgrade could be finished in the most nodes with certain computing power. By calculating, it takes one sec to finish seven transactions. The speed for making transaction is low compared with other large-size payment network.
+The fork shows the disagreement among the old nodes and new olds which have been upgraded. Two distinctive groups do not accept the chain each other. So two paralleled chains have formed and will not disappear.</p>
+<h3 id="soft-fork">Soft Fork<a href="#soft-fork" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>During the upgrading process, small blocks will be discovered in the new nodes. However, old nodes insist mining bigger blocks and will stop later. The reason why old nodes stopping mining rests on their agreement on the other chain. So even if bigger blocks are discovered in the future, they will be abandoned (orphan nodes). The forks are shown in this process, but will disappear eventually.</p>
+<h3 id="possible-situation-when-soft-forks-will-be-confronted">Possible situation when soft forks will be confronted<a href="#possible-situation-when-soft-forks-will-be-confronted" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ol>
+<li>Eight bytes in the domain of coinbase are used as extra nonce;</li>
+<li>If light nodes verify whether some transaction is recorded in the block, then one merkle proof for full node is ok;</li>
+<li>Full nodes maintain UTXO in local to know the remaining amount of some account;</li>
+<li>Light nodes cannot know the remaining amount of some account;</li>
+<li>Someone recommends that take hash(UTXO) into the domain of coinbase.</li>
+</ol>
+<h2 id="q--a-about-bitcoin">Q &amp; A about BitCoin<a href="#q--a-about-bitcoin" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Q1: If the recipient is off-line during the transaction, what will be?</p>
+<blockquote>
+<p>A1: No need to keep online.</p>
+</blockquote>
+<p>Q2: What can I do if I lost my private-key?</p>
+<blockquote>
+<p>A2: Nothing if you have confidence in transaction institutions.</p>
+</blockquote>
+<p>Q3: What can I do if I revealed my private-key?</p>
+<blockquote>
+<p>A3: Transfer all to another account.</p>
+</blockquote>
+<p>Q4: What can I do if I record wrong address?</p>
+<blockquote>
+<p>A5: Nothing you can do to cancel your transaction. If transfer to no-place, you will have no returns.</p>
+</blockquote>
+<p>Q5: Since every transaction recorded into the blocks needs to be verified, why OP_RETURN in the proof of burn will be accepted?</p>
+<blockquote>
+<p>A6: For one transaction, we need to verify the input &amp; output script of current transaction. However, OP_RETURN is recorded into the output script of the current transaction. So it will not be verified.</p>
+</blockquote>
+<p>Q6: How to prevent from stealing by other miners?</p>
+<blockquote>
+<p>A6: In the coinbase tx, the address owned by the recipient has been recorded. If to steal, the address needs chaning. But once the address changed, merkle tree will be changed and correspondingly, root hash will be changed as well. Finally, block header will not be the same as the previous one. The nonce is invalid.</p>
+</blockquote>
+<p>Q7: How is transaction fee transferred to targeted miner?</p>
+<blockquote>
+<p>A7: No need to know before transferring.</p>
+</blockquote>
+<h2 id="the-anonymity-of-bitcoin">The Anonymity of BitCoin<a href="#the-anonymity-of-bitcoin" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Its anonymity reveals not as good as we expect.</p>
+<h3 id="several-possible-ways-to-nullify-its-anonymity">Several possible ways to nullify its anonymity<a href="#several-possible-ways-to-nullify-its-anonymity" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ol>
+<li>
+<p>Even if multiple inputs and ouputs have been generated in a single transaction, their relevant addresses are likely to be manually linked.</p>
+</li>
+<li>
+<p>The address/account may be linked with the identity in the real world. Any link can be made when BitCoin world makes contacts with the real world, and the identity is put in danger. To prevent from money laundering, it is necessary to keep close watch on the input/output chain of any asset. E.g. Silk Road</p>
+</li>
+</ol>
+<p>How to improve anonymity of BitCoin as possible as I can?</p>
+<blockquote>
+<p>In the application layer, coin mixing is preferable.
+In the network layer, multiple-route transmittion to stop from deducing real identity from IP address of any node.</p>
+</blockquote>
+<h3 id="proof-of-zero-knowledge">Proof of Zero-knowledge<a href="#proof-of-zero-knowledge" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><a href="https://learnblockchain.cn/2019/04/18/learn-zkSNARK/">参考自blog</a></p>
+<h2 id="thoughts-on-bitcoin">Thoughts on BitCoin<a href="#thoughts-on-bitcoin" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ol>
+<li>Block Love</li>
+</ol>
+<blockquote>
+<p>Try not to truncate private-key, but use multiple sigs.</p>
+</blockquote>
+<ol start="2">
+<li>
+<p>BitCoin does not bypass those impossible results from distributed consensus because it fails to give reasonable explanations, such as forks.</p>
+</li>
+<li>
+<p>Scarcity of BitCoin</p>
+</li>
+<li>
+<p>Quantum Computing
+Q: Will quantum computing threaten BitCoin&rsquo;s development?</p>
+<ol>
+<li>Far away from applications;</li>
+<li>Make possible threat to traditional financial industry;</li>
+<li>Crypto and Hash differ. Nothing can reverse collision resistance of hash.</li>
+</ol>
+</li>
+</ol>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://hitchcock717.github.io/tags/note">Note</a></span><span class="tag"><a href="https://hitchcock717.github.io/tags/markdown">Markdown</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2721 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-11-23 02:37 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://hitchcock717.github.io/posts/data-type-conversion/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Python之数据类型转换</span>
+			</a>
+			<a class="prev-post" href="https://hitchcock717.github.io/posts/resemble_learning/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>集成学习（Ensemble Learning）</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://hitchcock717.github.io">Hitchcock</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://hitchcock717.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://hitchcock717.github.io/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="前端之React语法">
+<meta itemprop="description" content="具体参见菜鸟教程 腾讯云开发者平台&#43;node.js环境&#43;create-react-app脚手架 安装脚手架指令：sudo yarn global add create-react-app 关于yarn package dependence">
+<meta itemprop="datePublished" content="2019-05-22T23:05:27+00:00" />
+<meta itemprop="dateModified" content="2019-05-22T23:05:27+00:00" />
+<meta itemprop="wordCount" content="2408">
+
+
+
+<meta itemprop="keywords" content="Note,React," />
+<meta property="og:title" content="前端之React语法" />
+<meta property="og:description" content="具体参见菜鸟教程 腾讯云开发者平台&#43;node.js环境&#43;create-react-app脚手架 安装脚手架指令：sudo yarn global add create-react-app 关于yarn package dependence" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hitchcock717.github.io/posts/react-review/" />
+<meta property="article:published_time" content="2019-05-22T23:05:27+00:00" />
+<meta property="article:modified_time" content="2019-05-22T23:05:27+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="前端之React语法"/>
+<meta name="twitter:description" content="具体参见菜鸟教程 腾讯云开发者平台&#43;node.js环境&#43;create-react-app脚手架 安装脚手架指令：sudo yarn global add create-react-app 关于yarn package dependence"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>前端之React语法</title>
+	<link rel="stylesheet" href="https://hitchcock717.github.io/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://hitchcock717.github.io">Darth Vader</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://hitchcock717.github.io/posts/">Posts</a>
+				<a href="https://hitchcock717.github.io/about-hugo/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/Hitchcock717" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://hitchcock717.github.io/posts/">Posts</a></li>
+			<li><a href="https://hitchcock717.github.io/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>May 22, 2019</span></div>
+				<h1>前端之React语法</h1>
+			</header>
+			<div class="content">
+				<p><a href="https://www.runoob.com/react/react-install.html">具体参见菜鸟教程</a></p>
+<h4 id="腾讯云开发者平台nodejs环境create-react-app脚手架">腾讯云开发者平台+node.js环境+create-react-app脚手架<a href="#腾讯云开发者平台nodejs环境create-react-app脚手架" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<pre><code>安装脚手架指令：sudo yarn global add create-react-app
+</code></pre><p>关于yarn</p>
+<blockquote>
+<p>package dependence -从 npm 注册源获取模块的新的 CLI【command-line-interface】 客户端</p>
+</blockquote>
+<pre><code>创建app指令：create-react-app app
+</code></pre><pre><code>创建访问链接 cd app / yarn start ——&gt; localhost+:本地端口3000
+</code></pre><hr>
+<p>###<em>React元素渲染</em></p>
+<p><strong>将元素渲染进DOM(Document Object Model)文档对象模型</strong></p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot; /&gt;
+&lt;title&gt;Hello React!&lt;/title&gt;
+&lt;script src=&quot;https://cdn.staticfile.org/react/16.4.0/umd/react.development.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;     #首先定义根结点
+&lt;script type=&quot;text/babel&quot;&gt;   #react第二代jsx语法解析编译器--babel
+const element =&lt;h1&gt;Hello, world!&lt;/h1&gt;;  #const表示常量，常量值不能通过重新赋值改变，不能重新声明 / 语法：const name1 = value1[, name2=value2 [, ..[, nameN=valueN]]]; / 此处标明元素是&quot;Hello,world!&quot;一级标题
+ReactDOM.render( 						  #render()渲染方法，对一级标题渲染
+    element,									#对应const中的元素 / 此处element可替换为&lt;h1&gt;Hello, world!&lt;/h1&gt;
+    document.getElementById('example') #返回匹配特定id的元素
+);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><strong>更新元素渲染</strong></p>
+<pre><code>&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;   
+&lt;script type=&quot;text/babel&quot;&gt;
+function tick() {
+  const element = (
+    &lt;div&gt;
+      &lt;h1&gt;Hello, world!&lt;/h1&gt;      #react中元素不可变
+      &lt;h2&gt;现在是 {new Date().toLocaleTimeString()}.&lt;/h2&gt;     #更新界面的唯一方法--创建新元素/ 此处创建计时器
+    &lt;/div&gt;
+  );
+  ReactDOM.render(
+    element,
+    document.getElementById('example')
+  );
+}
+ 
+setInterval(tick, 1000);    #setInterval()方法，每秒调用一次render()方法
+</code></pre><p><strong>封装function tick( )</strong></p>
+<pre><code>等效方法一、
+&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/babel&quot;&gt;
+function Clock(props) {        #接受任意入参（props）
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Hello, world!&lt;/h1&gt;
+      &lt;h2&gt;现在是 {props.date.toLocaleTimeString()}.&lt;/h2&gt;
+    &lt;/div&gt;
+  );
+}
+
+function tick() {
+  ReactDOM.render(
+    &lt;Clock date={new Date()} /&gt;,
+    document.getElementById('example')
+  );
+}
+
+setInterval(tick, 1000);
+
+==================================================
+等效方法二、
+&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/babel&quot;&gt;
+class Clock extends React.Component {    #使用ES6类
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;h1&gt;Hello, world!&lt;/h1&gt;
+        &lt;h2&gt;现在是 {this.props.date.toLocaleTimeString()}.&lt;/h2&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+function tick() {
+  ReactDOM.render(
+    &lt;Clock date={new Date()} /&gt;,
+    document.getElementById('example')
+  );
+}
+
+setInterval(tick, 1000);
+</code></pre><h6 id="-关于函数组件-参见react官方文档httpsreactdocschinaorgdocscomponents-and-propshtml">&gt; 关于函数组件 参见<a href="https://react.docschina.org/docs/components-and-props.html">react官方文档</a><a href="#-关于函数组件-参见react官方文档httpsreactdocschinaorgdocscomponents-and-propshtml" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h6>
+<blockquote>
+<p>如下可称为<strong>函数组件</strong></p>
+<pre><code>function Welcome(props) {
+ return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+</code></pre><p>或</p>
+<pre><code>class Welcome extends React.Component {
+ render() {
+   return &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;;
+ }
+}
+</code></pre><p><em>渲染组件</em></p>
+<p>React元素不仅包括DOM标签，还有用户自定义组件</p>
+<pre><code>function Welcome(props) {
+ return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+
+const element = &lt;Welcome name=&quot;Sara&quot; /&gt;; #自定义Welcome name元素，注意与方法名一致【大写】
+ReactDOM.render(
+ element,
+ document.getElementById('root')
+);
+</code></pre><p>让我们来回顾一下这个例子中发生了什么：</p>
+<ol>
+<li>我们调用 <code>ReactDOM.render()</code> 函数，并传入 <code>&lt;Welcome name=&quot;Sara&quot; /&gt;</code> 作为参数。</li>
+<li>React 调用 <code>Welcome</code> 组件，并将 <code>{name: 'Sara'}</code> 作为 props 传入。</li>
+<li><code>Welcome</code> 组件将 <code>&lt;h1&gt;Hello, Sara&lt;/h1&gt;</code> 元素作为返回值。</li>
+<li>React DOM 将 DOM 高效地更新为 <code>&lt;h1&gt;Hello, Sara&lt;/h1&gt;</code>。</li>
+</ol>
+</blockquote>
+<p>​		<em>复合组件</em></p>
+<pre><code>function Name(props) {
+    return &lt;h1&gt;网站名称：{props.name}&lt;/h1&gt;;
+}
+function Url(props) {
+    return &lt;h1&gt;网站地址：{props.url}&lt;/h1&gt;;
+}
+function Nickname(props) {
+    return &lt;h1&gt;网站小名：{props.nickname}&lt;/h1&gt;;
+}
+function App() {
+    return (
+    &lt;div&gt;
+        &lt;Name name=&quot;菜鸟教程&quot; /&gt;
+        &lt;Url url=&quot;http://www.runoob.com&quot; /&gt;
+        &lt;Nickname nickname=&quot;Runoob&quot; /&gt;
+    &lt;/div&gt;
+    );
+}
+ 
+ReactDOM.render(
+     &lt;App /&gt;,       #渲染整个组件
+    document.getElementById('example')
+);
+</code></pre><p>###<em>React JSX</em></p>
+<blockquote>
+<p>元素是构成 React 应用的最小单位，JSX 就是用来声明 React 当中的元素</p>
+</blockquote>
+<p><strong>不能使用if else语句</strong>——&gt;<strong>三元运算</strong></p>
+<pre><code>&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+    &lt;script type=&quot;text/babel&quot;&gt;
+	  var i = 1;
+      ReactDOM.render(
+      	&lt;div&gt;
+      	  &lt;h1&gt;{i == 1 ? 'True!' : 'False'}&lt;/h1&gt; #相当于 if i == 1, return true; else: return false;
+        &lt;/div&gt;
+      	,
+      	document.getElementById('example')
+      );
+</code></pre><p>######&gt;关于三元运算</p>
+<blockquote>
+<p>语法：condition？expr1 ： expr2</p>
+</blockquote>
+<p><strong>内联样式</strong></p>
+<pre><code>var myStyle = {
+    fontSize: 100,
+    color: '#FF0000'
+};
+ReactDOM.render(
+    &lt;h1 style = {myStyle}&gt;菜鸟教程&lt;/h1&gt;,
+    document.getElementById('example')
+);
+</code></pre><p><strong>注释</strong> {/*      */}</p>
+<pre><code>ReactDOM.render(
+    &lt;div&gt;
+    &lt;h1&gt;菜鸟教程&lt;/h1&gt;
+    {/*注释...*/}
+     &lt;/div&gt;,
+    document.getElementById('example')
+);
+</code></pre><p>###<em>React State</em>  参见<a href="%5Bhttp://huziketang.mangojuice.top/books/react/lesson10%5D(http://huziketang.mangojuice.top/books/react/lesson10)">胡子大哈blog</a></p>
+<p>最直观的理解</p>
+<p><img src="https://huzidaha.github.io/static/assets/img/posts/B7575C67-64F8-4A13-9C63-4D6805FA360D.png" alt="image_state"></p>
+<p>以点赞按钮为例</p>
+<pre><code>import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+
+class LikeButton extends Component {
+  constructor () {      
+    super()
+    this.state = { isLiked: false }  #this指向likebutton类
+  }
+
+  handleClickOnLikeButton () {
+    this.setState({
+      isLiked: !this.state.isLiked
+    })
+  }
+
+  render () {
+    return (
+      &lt;button onClick={this.handleClickOnLikeButton.bind(this)}&gt;
+        {this.state.isLiked ? '取消' : '点赞'} 👍
+      &lt;/button&gt;
+    )
+  }
+}
+</code></pre><p>######&gt;关于constructor与super的作用    参见<a href="https://juejin.im/post/5b4c0b26f265da0f6c7a82a1">掘金戴宏兵的文章</a></p>
+<p><code>constructor</code> 方法是类的构造函数，是一个默认方法</p>
+<p><code>super</code> 这个关键字，既可以当做函数使用，也可以当做对象使用。这两种情况下，它的用法完全不用</p>
+<p>​	当做函数使用</p>
+<blockquote>
+<p><strong>class</strong> <strong>A</strong> {}
+<strong>class</strong> <strong>B</strong> <strong>extends</strong> <strong>A</strong> {
+<strong>constructor</strong>() {
+<strong>super</strong>();  // ES6 要求，子类的构造函数必须执行一次 super 函数，否则会报错。
+}
+}</p>
+<p>注：在 <code>constructor</code> 中必须调用 <code>super</code> 方法，因为子类没有自己的 <code>this</code> 对象，而是继承父类的 <code>this</code> 对象，然后对其进行加工,而 <code>super</code> 就代表了父类的构造函数。<code>super</code> 虽然代表了父类 A 的构造函数，但是返回的是子类 B 的实例，即 <code>super</code> 内部的 <code>this</code> 指的是 B，因此 <code>super()</code> 在这里相当于 ```A.prototype.constructor.call(this, props)``。</p>
+</blockquote>
+<p>​	当做对象使用</p>
+<p><strong>在普通方法中，指向父类的原型对象；在静态方法中，指向父类</strong></p>
+<blockquote>
+<p>class A {
+c() {
+return 2;
+}
+}</p>
+<p>class B extends A {
+constructor() {
+super();
+console.log(super.c()); // 2
+}
+}</p>
+<p>let b = new B();</p>
+<p>注：上面代码中，子类 B 当中的 <code>super.c()</code>，就是将 <code>super</code> 当作一个对象使用。这时，<code>super</code> 在普通方法之中，指向 <code>A.prototype</code>，所以 <code>super.c()</code> 就相当于 <code>A.prototype.c()</code>。</p>
+</blockquote>
+<p><strong>通过 super 调用父类的方法时，super 会绑定子类的 this</strong></p>
+<pre><code>class A {
+  constructor {
+    this.x = 1;
+  }
+  s() {
+    console.log(this.x);
+  }
+}
+
+class B extends A {
+  constructor {
+    super();
+    this.x = 2;
+  }
+  m() {
+    super.s();
+  }
+}
+
+let b = new B();
+b.m(); // 2
+
+#上面代码中，super.s() 虽然调用的是 A.prototytpe.s()，但是 A.prototytpe.s()会绑定子类 B 的 this，导致输出的是 2，而不是 1。也就是说，实际上执行的是 super.s.call(this)。
+</code></pre><p>######&gt;继续state点赞👍案例</p>
+<p><code>isLiked</code> 存放在实例的 <code>state</code> 对象当中，这个对象在构造函数里面初始化。这个组件的 <code>render</code> 函数内，会根据组件的 <code>state</code> 的中的<code>isLiked</code>不同显示“取消”或“点赞”内容。并且给 <code>button</code> 加上了点击的事件监听。</p>
+<p>最后构建一个 <code>Index</code> ，在它的 <code>render</code> 函数内使用 <code>LikeButton</code> 。然后把 <code>Index</code>渲染到页面上：</p>
+<pre><code>class Index extends Component {
+  render () {
+    return (
+      &lt;div&gt;
+        &lt;LikeButton /&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+ReactDOM.render(
+  &lt;Index /&gt;,
+  document.getElementById('root')
+)
+</code></pre><h3 id="react-props"><em>React Props</em><a href="#react-props" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<blockquote>
+<p>state根据交互可变，用来更新和修改数据/props不可变，用来传递数据</p>
+</blockquote>
+<pre><code>&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/babel&quot;&gt;
+function HelloMessage(props) {
+	return &lt;h1&gt;Hello {props.name}!&lt;/h1&gt;;
+}
+
+const element = &lt;HelloMessage name=&quot;Runoob&quot;/&gt;; #自定义组件
+
+ReactDOM.render(
+	element,
+	document.getElementById('example')
+);
+</code></pre><p><strong>state与props组合使用</strong></p>
+<blockquote>
+<p>在父组件中设置 state， 并通过在子组件上使用 props 将其传递到子组件上。在 render 函数中, 我们设置 name 和 site 来获取父组件传递过来的数据。</p>
+</blockquote>
+<pre><code>class WebSite extends React.Component {
+  constructor() {
+      super();
+ 
+      this.state = {
+        name: &quot;菜鸟教程&quot;,
+        site: &quot;https://www.runoob.com&quot;
+      }
+    }
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;Name name={this.state.name} /&gt;
+        &lt;Link site={this.state.site} /&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+ 
+ 
+ 
+class Name extends React.Component {
+  render() {
+    return (
+      &lt;h1&gt;{this.props.name}&lt;/h1&gt;
+    );
+  }
+}
+ 
+class Link extends React.Component {
+  render() {
+    return (
+      &lt;a href={this.props.site}&gt;
+        {this.props.site}
+      &lt;/a&gt;
+    );
+  }
+}
+ 
+ReactDOM.render(
+  &lt;WebSite /&gt;,
+  document.getElementById('example')
+);
+</code></pre>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://hitchcock717.github.io/tags/note">Note</a></span><span class="tag"><a href="https://hitchcock717.github.io/tags/react">React</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2408 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-05-23 07:05 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://hitchcock717.github.io/posts/cjy-philosophy/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>陈嘉映的哲学之道</span>
+			</a>
+			<a class="prev-post" href="https://hitchcock717.github.io/posts/restructuretext-review/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>技术写作之reStructureText</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://hitchcock717.github.io">Hitchcock</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://hitchcock717.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://hitchcock717.github.io/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>
