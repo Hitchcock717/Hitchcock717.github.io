@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Economics on Darth Vader</title>
+    <link>https://hitchcock717.github.io/tags/economics/</link>
+    <description>Recent content in Economics on Darth Vader</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Fri, 22 Nov 2019 18:37:56 +0000</lastBuildDate><atom:link href="https://hitchcock717.github.io/tags/economics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>比特币</title>
+      <link>https://hitchcock717.github.io/posts/bitcoin/</link>
+      <pubDate>Fri, 22 Nov 2019 18:37:56 +0000</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/bitcoin/</guid>
+      <description>Bitcoin —— Crypto-Currency Two functions Hash Signiture (Public-key cryptography) Hash Three functions 1. collision resistance 抗碰撞性 collison refers to: input x != y; output H(x) = H(y) ** In theory, it works** Practice: Upload a file on the cloud platform, how to prevent anyone from tampering it? Solution: 1. Consider it as an input file, caculate its hash(H(input)) and save it in local space. Then upload</description>
+    </item>
+    
+  </channel>
+</rss>
