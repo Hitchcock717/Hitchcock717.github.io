@@ -37,10 +37,10 @@
     
     <item>
       <title>CQL Query Language -- Neo4j</title>
-      <link>https://hitchcock717.github.io/posts/neo4j/</link>
+      <link>https://hitchcock717.github.io/posts/neo4j/neo4j/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://hitchcock717.github.io/posts/neo4j/</guid>
+      <guid>https://hitchcock717.github.io/posts/neo4j/neo4j/</guid>
       <description>This document is summarized based on the introdcution of Neo4j in W3Cschool Neo4j CQL common order/clause: ###CREATE 1.1 Used to create non-attar node; create a non-statistic node Grammar: CREATE (&amp;lt;node-name:) : node name to create : node tag name 1.2 Used to create attractive node Grammar: CREATE( ​ :​ { ​ :​ &amp;hellip;&amp;hellip; ​ :​ } ) Attr is a key-value pair. 1.3 Used to create one</description>
     </item>
     
@@ -55,10 +55,10 @@
     
     <item>
       <title>比特币</title>
-      <link>https://hitchcock717.github.io/posts/bitcoin/bitcoin/</link>
+      <link>https://hitchcock717.github.io/posts/bitcoin/</link>
       <pubDate>Fri, 22 Nov 2019 18:37:56 +0000</pubDate>
       
-      <guid>https://hitchcock717.github.io/posts/bitcoin/bitcoin/</guid>
+      <guid>https://hitchcock717.github.io/posts/bitcoin/</guid>
       <description>Bitcoin —— Crypto-Currency Two functions Hash Signiture (Public-key cryptography) Hash Three functions 1. collision resistance 抗碰撞性 collison refers to: input x != y; output H(x) = H(y) ** In theory, it works** Practice: Upload a file on the cloud platform, how to prevent anyone from tampering it? Solution: 1. Consider it as an input file, caculate its hash(H(input)) and save it in local space. Then upload</description>
     </item>
     
