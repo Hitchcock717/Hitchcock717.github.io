@@ -595,14 +595,14 @@ Get newest info of block header; then try nonce, calculate (SHA-256(SHA-256(bloc
 <li>Merkle Tree</li>
 </ol>
 <p><strong>Hash Pointers</strong>
-图示：{% asset_img WechatIMG604.png BitCoin-1 %} <a href="https://www.jianshu.com/p/f3570d8e1d27">摘自简书</a></p>
+<a href="https://imgtu.com/i/RlnoZR"><img src="https://z3.ax1x.com/2021/06/25/RlnoZR.png" alt="示意图1"></a></p>
 <blockquote>
 <p>Compared with normal pointers, hash pointers can detect tampering by saving extra hash into the structure body.
-图示：{% asset_img WechatIMG605.png BitCoin-2 %}  <a href="https://www.jianshu.com/p/f3570d8e1d27">摘自简书</a>
+<a href="https://imgtu.com/i/RlupdI"><img src="https://z3.ax1x.com/2021/06/25/RlupdI.png" alt="示意图2"></a>
 According to above pic, there is only a need to remember the last hash if detecting tampering because block chain is a linked list using hash pointers.</p>
 </blockquote>
 <p><strong>Merkle Tree</strong>
-图示：{% asset_img WechatIMG606.png BitCoin-3 %}  <a href="https://www.jianshu.com/p/f3570d8e1d27">摘自简书</a></p>
+<a href="https://imgtu.com/i/RluEQg"><img src="https://z3.ax1x.com/2021/06/25/RluEQg.png" alt="示意图3"></a></p>
 <blockquote>
 <p>First Tier(root node): Root Hash saved; Hash(root hash) = Hash(concat[hash(child node1)+hash(child node2)])
 Second/Third Tier: Hash Pointers; Save the hashes of data blocks in the bottom node
@@ -616,7 +616,7 @@ Full Node: block header &amp; block body saved
 Light Node(like wxapplet): block header saved only</p>
 <p>Question: How to prove any transaction logged into the block chain in terms of light nodes?</p>
 <p>Solution: The Merkle Tree can provide Merkle Proof.
-图示：{% asset_img WechatIMG607.png BitCoin-4 %}  <a href="https://www.bilibili.com/video/av37065233?p=3">截取自课程视频</a>
+<a href="https://imgtu.com/i/RluWkt"><img src="https://z3.ax1x.com/2021/06/25/RluWkt.png" alt="示意图4"></a>
 Proof of Membership: theta(log(n)) complexity if proposing Num(n) tx in the entire tree.
 Proof of Non-Membership: theta(n)</p>
 <h2 id="bitcoin--concensus-protocol">BitCoin —— Concensus Protocol</h2>
@@ -695,7 +695,7 @@ In fact, BitCoin sets limits to each block&rsquo;s transaction num. The limit is
 </ol>
 <h3 id="utxo">UTXO</h3>
 <h4 id="unspent-transaction-output">Unspent Transaction Output</h4>
-<p>{% asset_img UTXO.png UTXO %}</p>
+<p><a href="https://imgtu.com/i/RlnWzF"><img src="https://z3.ax1x.com/2021/06/25/RlnWzF.png" alt="UTXO"></a></p>
 <p><a href="https://www.zhihu.com/question/59913301">参考知乎</a></p>
 <h2 id="bitcoin-network">BitCoin Network</h2>
 <p>Desiging principle: Simple, robust but no efficient</p>
@@ -749,13 +749,13 @@ Depending on POW. Supposing that the pre-70 zero of target nonce can meet the re
 </ol>
 <h2 id="bitcoin-script">BitCoin Script</h2>
 <p><a href="https://zhuanlan.zhihu.com/p/25461051">参考自知乎巴比特</a>
-输入交易见图示：{% asset_img WechatIMG608.png BitCoin-5 %}
-输出交易见图示：{% asset_img WechatIMG609.png BitCoin-6 %}</p>
+输入交易见图示：<a href="https://imgtu.com/i/RlujhV"><img src="https://z3.ax1x.com/2021/06/25/RlujhV.png" alt="示意图5"></a>
+输出交易见图示：<a href="https://imgtu.com/i/RlKScF"><img src="https://z3.ax1x.com/2021/06/25/RlKScF.png" alt="示意图6"></a></p>
 <h3 id="stack">Stack</h3>
 <p>Core: Last in First Out
 In the ouput content, OP_DUP means duplicating the top element in the stack; OP_EQUALVERIFY means verifying whether two elements in the top of stack are equal.</p>
 <h3 id="transaction">Transaction</h3>
-<p>{% asset_img WechatIMG610.png BitCoin-7 %}</p>
+<p><a href="https://imgtu.com/i/RlKAtx"><img src="https://z3.ax1x.com/2021/06/25/RlKAtx.png" alt="示意图7"></a></p>
 <h3 id="standard-transaction-script">Standard transaction script</h3>
 <p>P2PKH, Pay to Public Key Hash
 When Alice wants to transfer fees to Bob, input script shows Bob&rsquo;s address (equals pub-key hash);
