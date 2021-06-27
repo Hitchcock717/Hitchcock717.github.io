@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 11 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://hitchcock717.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Jun 2021 16:11:01 +0800</lastBuildDate><atom:link href="https://hitchcock717.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git知识点</title>
+      <link>https://hitchcock717.github.io/posts/git/</link>
+      <pubDate>Sun, 27 Jun 2021 16:11:01 +0800</pubDate>
+      
+      <guid>https://hitchcock717.github.io/posts/git/</guid>
+      <description>The source comes from: https://www.liaoxuefeng.com/wiki/896043488029600 Category 创建版本库 时光机穿梭 远程仓库 分支管理 标签管理 自定义Git [git fetch vs git pull](##7.git fetch vs git pull) [git merge vs git rebase](##8.git merge vs git rebase) 子模块 Cheatsheet 1.创建版本库 初始化一个Gi</description>
+    </item>
+    
     <item>
       <title>About Darth Vader</title>
       <link>https://hitchcock717.github.io/about-darth-vader/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://hitchcock717.github.io/posts/regressioncategorization/</guid>
       <description>分类与回归的区别 | 特性 | 分类（监督学习） | 回归 | | 输出类型 | 离散数据 | 连续数据 | | 目的 | 寻找决策边界 | 找到最优拟合 | | 评价方法 | 精度、混淆矩</description>
-    </item>
-    
-    <item>
-      <title>爬虫之Fiddler-Mono代理工具</title>
-      <link>https://hitchcock717.github.io/posts/fiddler-mono-mac/</link>
-      <pubDate>Wed, 22 May 2019 23:12:35 +0000</pubDate>
-      
-      <guid>https://hitchcock717.github.io/posts/fiddler-mono-mac/</guid>
-      <description>近期做知网爬虫项目的一些工具准备 具体参见Cyrus Ren blog Fiddler介绍 http调试代理工具，以代理服务器的方式监听系统的http网络数据流</description>
     </item>
     
   </channel>
