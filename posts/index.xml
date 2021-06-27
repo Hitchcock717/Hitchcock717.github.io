@@ -22,16 +22,16 @@
 <h1 id="category">Category</h1>
 <hr>
 <ol>
-<li><a href="#1.%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93">创建版本库</a></li>
-<li><a href="#2.%E6%97%B6%E5%85%89%E6%9C%BA%E7%A9%BF%E6%A2%AD">时光机穿梭</a></li>
-<li><a href="#3.%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93">远程仓库</a></li>
-<li><a href="#4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86">分支管理</a></li>
-<li><a href="#5.%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86">标签管理</a></li>
-<li><a href="#6.%E8%87%AA%E5%AE%9A%E4%B9%89Git">自定义Git</a></li>
-<li><a href="#7.git%C2%A0fetch%C2%A0vs%C2%A0git%C2%A0pull">git fetch vs git pull</a></li>
-<li><a href="#8.git%C2%A0merge%C2%A0vs%C2%A0git%C2%A0rebase">git merge vs git rebase</a></li>
-<li><a href="#9.%E5%AD%90%E6%A8%A1%E5%9D%97">子模块</a></li>
-<li><a href="#10.Cheatsheet">Cheatsheet</a></li>
+<li><a href="#1%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93">创建版本库</a></li>
+<li><a href="#2%E6%97%B6%E5%85%89%E6%9C%BA%E7%A9%BF%E6%A2%AD">时光机穿梭</a></li>
+<li><a href="#3%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93">远程仓库</a></li>
+<li><a href="#4%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86">分支管理</a></li>
+<li><a href="#5%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86">标签管理</a></li>
+<li><a href="#6%E8%87%AA%E5%AE%9A%E4%B9%89Git">自定义Git</a></li>
+<li><a href="#7git%C2%A0fetch%C2%A0vs%C2%A0git%C2%A0pull">git fetch vs git pull</a></li>
+<li><a href="#8git%C2%A0merge%C2%A0vs%C2%A0git%C2%A0rebase">git merge vs git rebase</a></li>
+<li><a href="#9%E5%AD%90%E6%A8%A1%E5%9D%97">子模块</a></li>
+<li><a href="#10Cheatsheet">Cheatsheet</a></li>
 </ol>
 <hr>
 <h2 id="1创建版本库">1.创建版本库</h2>
