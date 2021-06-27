@@ -14,7 +14,7 @@
       <pubDate>Sun, 27 Jun 2021 16:11:01 +0800</pubDate>
       
       <guid>https://hitchcock717.github.io/posts/git/</guid>
-      <description>The source comes from: https://www.liaoxuefeng.com/wiki/896043488029600 Category 创建版本库 时光机穿梭 远程仓库 分支管理 标签管理 自定义Git [git fetch vs git pull](##7.git fetch vs git pull) [git merge vs git rebase](##8.git merge vs git rebase) 子模块 Cheatsheet 1.创建版本库 初始化一个Gi</description>
+      <description>The source comes from: https://www.liaoxuefeng.com/wiki/896043488029600 Category 创建版本库 时光机穿梭 远程仓库 分支管理 标签管理 自定义Git git fetch vs git pull git merge vs git rebase 子模块 Cheatsheet 1.创建版本库 初始化一个Git仓库，使用gi</description>
     </item>
     
   </channel>
