@@ -28,8 +28,8 @@
 <li><a href="#4%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86">分支管理</a></li>
 <li><a href="#5%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86">标签管理</a></li>
 <li><a href="#6%E8%87%AA%E5%AE%9A%E4%B9%89Git">自定义Git</a></li>
-<li><a href="#7git%C2%A0fetch%C2%A0vs%C2%A0git%C2%A0pull">git fetch vs git pull</a></li>
-<li><a href="#8git%C2%A0merge%C2%A0vs%C2%A0git%C2%A0rebase">git merge vs git rebase</a></li>
+<li><a href="#7git-fetch-vs-git-pull">git fetch vs git pull</a></li>
+<li><a href="#8git-merge-vs-git-rebase">git merge vs git rebase</a></li>
 <li><a href="#9%E5%AD%90%E6%A8%A1%E5%9D%97">子模块</a></li>
 <li><a href="#10Cheatsheet">Cheatsheet</a></li>
 </ol>
@@ -212,7 +212,7 @@
 <p>rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</p>
 </li>
 </ul>
-<h2 id="5-标签管理">5. 标签管理</h2>
+<h2 id="5标签管理">5.标签管理</h2>
 <ul>
 <li>
 <p>命令git tag <!-- raw HTML omitted -->用于新建一个标签，默认为HEAD，也可以指定一个commit id；</p>
@@ -236,7 +236,7 @@
 <p>命令git push origin :refs/tags/<!-- raw HTML omitted -->可以删除一个远程标签。</p>
 </li>
 </ul>
-<h2 id="6-自定义git">6. 自定义Git</h2>
+<h2 id="6自定义git">6.自定义Git</h2>
 <ul>
 <li>忽略文件的原则是：</li>
 </ul>
@@ -272,7 +272,7 @@ $ git config &ndash;global alias.br branch</p>
 <p>git pull 则是将远程主机的最新内容拉下来后直接合并，即：git pull = git fetch + git merge，这样可能会产生冲突，需要手动解决。</p>
 </li>
 </ul>
-<h2 id="8-git-merge-vs-git-rebase">8. git merge vs git rebase</h2>
+<h2 id="8git-merge-vs-git-rebase">8.git merge vs git rebase</h2>
 <p><a href="https://zhuanlan.zhihu.com/p/75499871">来源1</a></p>
 <p><a href="https://imgtu.com/i/RYyZsP"><img src="https://z3.ax1x.com/2021/06/27/RYyZsP.png" alt="示意图"></a></p>
 <p>merge 特点：自动创建一个新的commit <a href="https://www.jianshu.com/p/f23f72251abc">来源2</a></p>
@@ -292,7 +292,7 @@ git add
 git rebase --continue
 （如果第三步无效可以执行 git rebase --skip）
 </code></pre><p><strong>不要在git add 之后习惯性的执行 git commit命令</strong></p>
-<h2 id="9-子模块">9. 子模块</h2>
+<h2 id="9子模块">9.子模块</h2>
 <p><a href="https://blog.csdn.net/guotianqing/article/details/82391665">来源</a></p>
 <ul>
 <li>
@@ -320,7 +320,7 @@ git submodule update &ndash;init &ndash;recursive</p>
 <li>vi .git/config 删除配置项中子模块相关条目</li>
 <li>rm .git/module/* 删除模块下的子模块目录，每个子模块对应一个目录，注意只删除对应的子模块目录即可</li>
 </ol>
-<h2 id="10-cheatsheet">10. Cheatsheet</h2>
+<h2 id="10cheatsheet">10.Cheatsheet</h2>
 <p><a href="https://liaoxuefeng.gitee.io/resource.liaoxuefeng.com/git/git-cheat-sheet.pdf">Git Cheatsheet</a></p>
 ]]></content>
 		</item>
